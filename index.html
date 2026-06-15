@@ -3,597 +3,642 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MBCC – Powerline Bird Safety Project</title>
+<title>Bird-Safe Power Lines Mongolia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green-dark: #1a4d2e;
-    --green-mid: #2d7a4f;
-    --green-light: #e8f5ed;
-    --amber: #c97a1a;
-    --amber-light: #fef3e2;
-    --stone: #f4f2ee;
-    --text: #1e1e1e;
-    --text-muted: #5a5a5a;
-    --white: #ffffff;
-    --border: #d8d4cc;
-    --radius: 10px;
-  }
+:root {
+  --night: #0f1f12;
+  --forest: #1b4332;
+  --moss: #2d6a4f;
+  --sage: #52b788;
+  --mist: #d8f3dc;
+  --amber: #e76f00;
+  --amber-light: #fff3e0;
+  --danger: #c1121f;
+  --stone: #f5f4f0;
+  --ink: #1a1a1a;
+  --muted: #5a5a5a;
+  --border: #ddd9d0;
+  --white: #ffffff;
+  --radius: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--white); line-height: 1.7; font-size: 16px; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--night);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 58px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.nav-logo { color: var(--sage); font-weight: 700; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo span { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 13px; }
+.nav-links { display: flex; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; padding: 0 13px; height: 58px; display: flex; align-items: center; font-size: 13.5px; font-weight: 500; transition: color 0.15s; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: #fff; border-bottom-color: var(--sage); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 20px; height: 2px; background: #fff; margin: 4px 0; }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    font-size: 16px;
-    line-height: 1.7;
-  }
+/* HERO */
+.hero {
+  position: relative; color: #fff;
+  padding: 90px 2rem 80px; text-align: center;
+  overflow: hidden; min-height: 520px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('hero.png');
+  background-size: cover; background-position: center 40%;
+  filter: brightness(0.42); z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-kicker {
+  display: inline-block;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: var(--sage); font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(24px, 4vw, 46px); font-weight: 700; line-height: 1.18;
+  max-width: 860px; margin: 0 auto 20px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.hero h1 em { color: var(--sage); font-style: normal; }
+.hero-sub { font-size: 17px; color: rgba(255,255,255,0.82); max-width: 640px; margin: 0 auto 48px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+.hero-stats { display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 40px; max-width: 900px; width: 100%; margin: 0 auto; }
+.hstat { flex: 1; min-width: 140px; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.12); text-align: center; }
+.hstat:last-child { border-right: none; }
+.hstat .n { font-family: 'Source Serif 4', serif; font-size: 36px; font-weight: 700; color: var(--sage); display: block; line-height: 1; margin-bottom: 6px; }
+.hstat .l { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 
-  /* ── NAV ─────────────────────────────────────────────── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--green-dark);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 60px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  }
-  .nav-brand {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; color: #fff;
-  }
-  .nav-logo {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--green-mid);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
-  .nav-brand span {
-    font-weight: 600; font-size: 15px; letter-spacing: 0.3px;
-  }
-  .nav-links {
-    display: flex; gap: 0; list-style: none;
-  }
-  .nav-links a {
-    color: rgba(255,255,255,0.82);
-    text-decoration: none;
-    padding: 0 14px; height: 60px;
-    display: flex; align-items: center;
-    font-size: 14px; font-weight: 500;
-    transition: color 0.15s, background 0.15s;
-    border-bottom: 2px solid transparent;
-  }
-  .nav-links a:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.07);
-    border-bottom-color: #7fd4a0;
-  }
-  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 4px 0; border-radius: 2px; transition: 0.3s; }
+/* SECTIONS */
+section { scroll-margin-top: 58px; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 72px 2rem; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--moss); margin-bottom: 10px; }
+.section-title { font-family: 'Source Serif 4', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+.section-lead { font-size: 17px; color: var(--muted); max-width: 700px; margin-bottom: 40px; line-height: 1.8; }
+.bg-stone { background: var(--stone); }
 
-  /* ── HERO ────────────────────────────────────────────── */
-  .hero {
-    background: linear-gradient(135deg, var(--green-dark) 0%, #1e6b3e 60%, #2d7a4f 100%);
-    color: #fff;
-    padding: 80px 2rem 70px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  .hero-eyebrow {
-    font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
-    text-transform: uppercase; color: #7fd4a0; margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Merriweather', serif;
-    font-size: clamp(28px, 5vw, 48px);
-    font-weight: 700; line-height: 1.2;
-    margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;
-  }
-  .hero p {
-    font-size: 17px; color: rgba(255,255,255,0.85);
-    max-width: 620px; margin: 0 auto 32px;
-  }
-  .hero-stats {
-    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-    margin-top: 40px;
-  }
-  .hero-stat { text-align: center; }
-  .hero-stat .num {
-    font-family: 'Merriweather', serif;
-    font-size: 36px; font-weight: 700; color: #7fd4a0; display: block;
-  }
-  .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,0.72); }
+/* PROBLEM */
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.problem-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.problem-card.danger { border-left: 3px solid var(--danger); }
+.problem-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.problem-card p { font-size: 14px; color: var(--muted); }
+.stat-highlight { background: var(--danger); color: #fff; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+.stat-highlight .big { font-family: 'Source Serif 4', serif; font-size: 48px; font-weight: 700; line-height: 1; display: block; }
+.stat-highlight p { font-size: 15px; color: rgba(255,255,255,0.88); margin-top: 4px; }
+.species-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.species-tag { background: var(--mist); color: var(--forest); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 20px; border: 1px solid #b7e4c7; }
 
-  /* ── SECTIONS ────────────────────────────────────────── */
-  section { scroll-margin-top: 60px; }
-  .section-inner { max-width: 1000px; margin: 0 auto; padding: 70px 2rem; }
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 1.8px;
-    text-transform: uppercase; color: var(--green-mid); margin-bottom: 10px;
-  }
-  .section-title {
-    font-family: 'Merriweather', serif;
-    font-size: clamp(22px, 3.5vw, 32px);
-    font-weight: 700; margin-bottom: 16px; line-height: 1.25;
-  }
-  .section-lead {
-    font-size: 17px; color: var(--text-muted);
-    max-width: 680px; margin-bottom: 40px; line-height: 1.75;
-  }
-  .bg-stone { background: var(--stone); }
-  .bg-green-light { background: var(--green-light); }
+/* SOLUTION */
+.solution-steps { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 32px; }
+.sstep { display: grid; grid-template-columns: 52px 1fr; border-bottom: 1px solid var(--border); background: var(--white); }
+.sstep:last-child { border-bottom: none; }
+.sstep-num { background: var(--forest); color: #fff; font-family: 'Source Serif 4', serif; font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.sstep-body { padding: 18px 20px; }
+.sstep-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--forest); }
+.sstep-body p { font-size: 14px; color: var(--muted); }
+.cover-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-top: 28px; }
+.spec-card { background: var(--stone); border-radius: var(--radius); padding: 18px; }
+.spec-card .spec-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 4px; }
+.spec-card .spec-val { font-size: 15px; font-weight: 600; }
+.standard-banner { background: var(--amber-light); border: 1px solid #ffd08a; border-left: 4px solid var(--amber); border-radius: var(--radius); padding: 20px 24px; margin-top: 28px; }
+.standard-banner h3 { font-size: 14px; font-weight: 600; color: var(--amber); margin-bottom: 8px; }
+.standard-banner ul { padding-left: 18px; font-size: 14px; color: #5a3e00; line-height: 2; }
 
-  /* ── ABOUT ───────────────────────────────────────────── */
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 10px;
-  }
-  .about-block { padding: 24px; background: #fff; border-radius: var(--radius); border: 1px solid var(--border); }
-  .about-block h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--green-dark); }
-  .about-block p { font-size: 15px; color: var(--text-muted); }
+/* RESEARCH / EVIDENCE */
+.evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+.ecard { border-radius: var(--radius); padding: 20px; text-align: center; }
+.ecard.green { background: var(--forest); color: #fff; }
+.ecard.amber { background: #c97a1a; color: #fff; }
+.ecard.red { background: var(--danger); color: #fff; }
+.ecard .en { font-family: 'Source Serif 4', serif; font-size: 34px; font-weight: 700; display: block; margin-bottom: 4px; }
+.ecard .el { font-size: 12px; opacity: 0.85; line-height: 1.4; }
+.bar-section h3 { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 13px; width: 160px; color: var(--muted); flex-shrink: 0; }
+.bar-track { flex: 1; background: #ece9e2; border-radius: 4px; height: 24px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
 
-  /* ── PROJECT ─────────────────────────────────────────── */
-  .project-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;
-  }
-  .pcard {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 22px 20px;
-    border-top: 3px solid var(--green-mid);
-  }
-  .pcard .icon { font-size: 26px; margin-bottom: 10px; }
-  .pcard h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--green-dark); }
-  .pcard p { font-size: 14px; color: var(--text-muted); }
+/* PHOTO GALLERY */
+.gallery-section { margin-top: 48px; }
+.gallery-section h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.gallery-section p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.gallery-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--stone); }
+.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.gallery-caption { padding: 10px 14px; font-size: 13px; color: var(--muted); }
+.gallery-placeholder { width: 100%; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--stone); color: var(--muted); font-size: 13px; gap: 8px; }
+.gallery-placeholder .icon { font-size: 32px; }
 
-  /* ── MAP ─────────────────────────────────────────────── */
-  .map-wrapper {
-    border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  .map-wrapper iframe { display: block; width: 100%; height: 480px; border: none; }
-  .map-legend {
-    display: flex; gap: 20px; flex-wrap: wrap;
-    padding: 14px 20px; background: #fff; border-top: 1px solid var(--border);
-    font-size: 13px; color: var(--text-muted);
-  }
-  .legend-item { display: flex; align-items: center; gap: 7px; }
-  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+/* MAP */
+.map-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.map-wrap iframe { display: block; width: 100%; height: 500px; border: none; }
+.map-footer { display: flex; gap: 20px; flex-wrap: wrap; padding: 14px 20px; background: var(--white); border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); align-items: center; }
+.leg { display: flex; align-items: center; gap: 7px; }
+.leg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.map-coming-soon { background: var(--amber-light); border: 1px solid #ffd08a; border-radius: var(--radius); padding: 12px 18px; margin-top: 12px; font-size: 13px; color: #5a3e00; }
 
-  /* ── MITIGATION ──────────────────────────────────────── */
-  .mit-steps {
-    display: flex; flex-direction: column; gap: 0;
-    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
-  }
-  .mit-step {
-    display: grid; grid-template-columns: 56px 1fr;
-    align-items: stretch; border-bottom: 1px solid var(--border);
-    background: #fff;
-  }
-  .mit-step:last-child { border-bottom: none; }
-  .mit-step-num {
-    background: var(--green-dark); color: #fff;
-    font-size: 18px; font-weight: 700; font-family: 'Merriweather', serif;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .mit-step-body { padding: 18px 20px; }
-  .mit-step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-  .mit-step-body p { font-size: 14px; color: var(--text-muted); }
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.proj-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--white); }
+.proj-card-head { padding: 20px; border-bottom: 1px solid var(--border); }
+.proj-card-head .tag { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 6px; }
+.proj-card-head h3 { font-size: 16px; font-weight: 600; }
+.proj-card-body { padding: 20px; }
+.proj-stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.proj-stat { background: var(--stone); border-radius: 6px; padding: 8px 14px; text-align: center; }
+.proj-stat .psn { font-size: 18px; font-weight: 700; color: var(--forest); display: block; line-height: 1; }
+.proj-stat .psl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.proj-card-body p { font-size: 14px; color: var(--muted); }
+.org-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.org-pill { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.org-pill.key { background: var(--mist); border-color: #b7e4c7; color: var(--forest); }
 
-  .standard-box {
-    background: var(--amber-light); border: 1px solid #e8c97a;
-    border-left: 4px solid var(--amber);
-    border-radius: var(--radius); padding: 20px 24px; margin-top: 30px;
-  }
-  .standard-box h3 { font-size: 15px; font-weight: 600; color: var(--amber); margin-bottom: 6px; }
-  .standard-box ul { padding-left: 18px; font-size: 14px; color: #6b4d1a; line-height: 1.9; }
+/* TAKE ACTION */
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.action-steps { display: flex; flex-direction: column; gap: 16px; }
+.astep { display: flex; gap: 16px; align-items: flex-start; }
+.astep-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.astep-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.astep-body p { font-size: 14px; color: var(--muted); }
+.contact-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.contact-box h3 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--forest); border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.citem { margin-bottom: 14px; }
+.citem .clabel { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 2px; }
+.citem p { font-size: 14px; color: var(--muted); }
+.citem a { color: var(--moss); text-decoration: none; font-size: 14px; }
+.citem a:hover { text-decoration: underline; }
 
-  /* ── RESULTS ─────────────────────────────────────────── */
-  .results-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
-    margin-bottom: 30px;
-  }
-  .rcard {
-    background: var(--green-dark); color: #fff;
-    border-radius: var(--radius); padding: 20px;
-    text-align: center;
-  }
-  .rcard .rnum {
-    font-family: 'Merriweather', serif;
-    font-size: 30px; font-weight: 700; color: #7fd4a0; display: block; margin-bottom: 4px;
-  }
-  .rcard .rlbl { font-size: 13px; color: rgba(255,255,255,0.75); }
-  .bar-chart { margin-top: 16px; }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .bar-label { font-size: 13px; width: 140px; color: var(--text-muted); flex-shrink: 0; }
-  .bar-track { flex: 1; background: #e8e6e0; border-radius: 4px; height: 22px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 12px; font-weight: 600; color: #fff; }
-  .bar-fill.mitigated { background: var(--green-mid); }
-  .bar-fill.other { background: #c97a1a; }
-  .bar-fill.anchor { background: #b33b2a; }
+/* FOOTER */
+footer { background: var(--night); color: rgba(255,255,255,0.55); text-align: center; padding: 32px 2rem; font-size: 13px; line-height: 2; }
+footer a { color: var(--sage); text-decoration: none; }
+.footer-logos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; font-size: 13px; color: rgba(255,255,255,0.4); }
 
-  /* ── RESEARCH ────────────────────────────────────────── */
-  .research-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
-  }
-  .resc-card {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 22px;
-  }
-  .resc-card .tag {
-    display: inline-block; background: var(--green-light);
-    color: var(--green-dark); font-size: 11px; font-weight: 600;
-    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
-    letter-spacing: 0.5px; text-transform: uppercase;
-  }
-  .resc-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-  .resc-card p { font-size: 14px; color: var(--text-muted); }
-
-  /* ── CONTACT ─────────────────────────────────────────── */
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-  }
-  .contact-info p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
-  .contact-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
-  .contact-icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
-  .contact-item strong { display: block; font-size: 13px; color: var(--text-muted); font-weight: 500; }
-  .contact-item span { font-size: 15px; }
-  .contact-form { display: flex; flex-direction: column; gap: 12px; }
-  .contact-form input,
-  .contact-form textarea {
-    padding: 10px 14px; border: 1px solid var(--border); border-radius: 7px;
-    font-family: inherit; font-size: 15px; color: var(--text);
-    background: #fff; resize: none; transition: border-color 0.2s;
-  }
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    outline: none; border-color: var(--green-mid);
-  }
-  .contact-form button {
-    background: var(--green-dark); color: #fff; border: none;
-    padding: 11px 24px; border-radius: 7px; font-size: 15px; font-weight: 600;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .contact-form button:hover { background: var(--green-mid); }
-
-  /* ── FOOTER ──────────────────────────────────────────── */
-  footer {
-    background: var(--green-dark); color: rgba(255,255,255,0.7);
-    text-align: center; padding: 30px 2rem;
-    font-size: 13px; line-height: 1.8;
-  }
-  footer a { color: #7fd4a0; text-decoration: none; }
-
-  /* ── RESPONSIVE ──────────────────────────────────────── */
-  @media (max-width: 700px) {
-    .hamburger { display: block; }
-    .nav-links { display: none; flex-direction: column; position: absolute;
-      top: 60px; left: 0; right: 0; background: var(--green-dark); padding: 10px 0; }
-    .nav-links.open { display: flex; }
-    .nav-links a { height: 44px; padding: 0 20px; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 24px; }
-    .mit-step { grid-template-columns: 44px 1fr; }
-  }
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--night); padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links a { height: 44px; padding: 0 20px; }
+  .problem-grid, .evidence-grid, .projects-grid, .action-grid { grid-template-columns: 1fr; }
+  .hstat { min-width: 120px; padding: 12px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#home">
-    <div class="nav-logo">🦅</div>
-    <span>Power Line Mitigation</span>
-  </a>
+  <a class="nav-logo" href="#home">🦅 Bird-Safe Power Lines <span>Mongolia</span></a>
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#project">Project</a></li>
-    <li><a href="#mitigation">Mitigation</a></li>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#solution">The Solution</a></li>
     <li><a href="#research">Research</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#action">Take Action</a></li>
   </ul>
 </nav>
 
-<!-- HERO / HOME -->
+<!-- HERO -->
 <section id="home">
-  <div class="hero">
-    <p class="hero-eyebrow">Bird Safe Power lines</p>
-    <h1>Protecting Raptors from Powerline Electrocution in Mongolia</h1>
-    <p>Installing bird-safe insulation covers on electricity distribution poles across Mongolia's steppe — safeguarding Saker Falcons, eagles, and other raptors.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="num">26,527</span><span class="lbl">Crossarms insulated</span></div>
-      <div class="hero-stat"><span class="num">68</span><span class="lbl">Power lines mitigated</span></div>
-      <div class="hero-stat"><span class="num">94.2%</span><span class="lbl">Reduction in electrocutions</span></div>
-      <div class="hero-stat"><span class="num">15</span><span class="lbl">Provinces covered</span></div>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-kicker">Mongolia · Bird Electrocution Mitigation</div>
+  <h1>Mongolia's distribution power lines, 10kV and 15kV, were killing <em>18,000 raptors</em> every year — before mitigation was implemented</h1>
+  <p class="hero-sub">A proven, low-cost solution exists. This website explains the problem, the solution, and what electricity distribution companies and consumers can do right now.</p>
+  <div class="hero-stats">
+    <div class="hstat">
+      <span class="n">18,000</span>
+      <span class="l">Raptors electrocuted annually in Mongolia — before mitigation</span>
+    </div>
+    <div class="hstat">
+      <span class="n">4,000+</span>
+      <span class="l">Saker Falcons killed per year — before mitigation</span>
+    </div>
+    <div class="hstat">
+      <span class="n">94.2%</span>
+      <span class="l">Reduction in electrocution — result of mitigation project</span>
+    </div>
+    <div class="hstat">
+      <span class="n">68</span>
+      <span class="l">State-owned lines are already being mitigated nationwide across 15 provinces</span>
     </div>
   </div>
+</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="bg-stone">
-  <div class="section-inner">
-    <p class="section-label">Project</p>
-    <h2 class="section-title">Power line mitigation</h2>
-    <p class="section-lead">MBCC is a leading wildlife conservation organization focused on protecting birds and their habitats in Mongolia. We work in partnership with government agencies, energy companies, and international funds to reduce human-caused bird mortality.</p>
+<!-- THE PROBLEM -->
+<section id="problem">
+<div class="wrap">
+  <p class="eyebrow">The Problem</p>
+  <h2 class="section-title">Why Mongolian power lines were deadly for birds</h2>
+  <p class="section-lead">The expansion of Mongolia's electricity distribution network since the 2000s introduced a silent danger for birds. Standard line pole design caused a bird's death — and thousands of raptors were electrocuted in the steppe.</p>
 
-    <div class="about-grid">
-      <div class="about-block">
-        <h3>🦅 Our Mission</h3>
-        <p>To conserve Mongolia's rich bird diversity through research, mitigation, and community engagement — with a particular focus on raptors threatened by modern infrastructure.</p>
+  <div class="problem-grid">
+    <div>
+      <div class="stat-highlight">
+        <span class="big">18,000</span>
+        <p>Raptors were electrocuted every year in Mongolia before a mitigation project was done in 2022 — including over 4,000 Saker Falcons, a globally endangered species.</p>
       </div>
-      <div class="about-block">
-        <h3>🤝 Key Partners</h3>
-        <p>We collaborate with the Ministry of Environment and Climate Change, Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF), regional electricity distribution companies, and other partners.</p>
+      <div class="problem-card danger">
+        <h3>The steppe zone factor</h3>
+        <p>Mongolia's steppe zone has abundant rodent prey — Brandt's Vole, Mongolian Gerbil, and Daurian Pika. This attracts large numbers of raptors to hunt near power lines. When rodent populations peak, electrocution rates increase. Every distribution line in the steppe zone was potentially lethal.</p>
       </div>
-      <div class="about-block">
-        <h3>📍 Project Area</h3>
-        <p>Our powerline mitigation work spans Mongolia's steppe zone — the highest-risk region where abundant rodent prey attracts large numbers of raptors to distribution lines.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="problem-card">
+        <h3>Pole design creates a lethal gap</h3>
+        <p>Standard 10–15 kV distribution poles use steel-reinforced concrete poles with galvanized steel crossarms and upright pin insulators. A bird perched on the pole simultaneously contacts two energized conductors — or one conductor and a grounded surface — and is electrocuted.</p>
       </div>
-      <div class="about-block">
-        <h3>🔬 Science-Based Approach</h3>
-        <p>All mitigation methods are field-tested, peer-reviewed, and comply with MNS 6518:2015 — Mongolia's national standard for bird-safe power infrastructure.</p>
+      <div class="problem-card">
+        <h3>Every pole was a risk</h3>
+        <p>With the standard configuration, every single pole along a distribution line posed a high electrocution risk. There are tens of thousands of such poles across Mongolia's steppe zone.</p>
+      </div>
+      <div class="problem-card">
+        <h3>International impact</h3>
+        <p>The problem extends beyond Mongolia's borders. High mortality of Mongolian Saker Falcons has also been recorded in their main wintering areas in Qinghai, China — research funded by Abu Dhabi identified electrocution as a key driver of population decline.</p>
       </div>
     </div>
   </div>
+
+  <!-- Carcass evidence photo -->
+  <div style="margin-top:32px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);">
+    <img src="photo5.jpg" alt="Raptor carcasses collected under unmitigated power poles in Mongolia" style="width:100%;max-height:360px;object-fit:cover;display:block;">
+    <div style="padding:12px 16px;background:var(--night);color:rgba(255,255,255,0.75);font-size:13px;">
+      ⚠️ Raptor carcasses collected from beneath unmitigated distribution poles during a field survey — Mongolia. Mass mortality events like this drove the national mitigation programme.
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:600;margin:36px 0 12px;">Species most at risk</h3>
+  <div class="species-row">
+    <span class="species-tag">🦅 Saker Falcon <em>(Falco cherrug)</em></span>
+    <span class="species-tag">🦅 Steppe Eagle <em>(Aquila nipalensis)</em></span>
+    <span class="species-tag">🦅 Golden Eagle <em>(Aquila chrysaetos)</em></span>
+    <span class="species-tag">🦅 Upland Buzzard <em>(Buteo hemilasius)</em></span>
+    <span class="species-tag">🐦 Black Kite <em>(Milvus migrans)</em></span>
+    <span class="species-tag">🐦 Common Kestrel <em>(Falco tinnunculus)</em></span>
+    <span class="species-tag">🐦 Common Raven <em>(Corvus corax)</em></span>
+  </div>
+</div>
 </section>
 
-<!-- PROJECT -->
-<section id="project">
-  <div class="section-inner">
-    <p class="section-label">The Project</p>
-    <h2 class="section-title">Govisumber Railway Powerline Mitigation</h2>
-    <p class="section-lead">In partnership with Choir Railway, MBCC is retrofitting concrete railway power poles in Govisumber Province with insulation covers — eliminating electrocution risk for birds perching on these structures.</p>
+<!-- THE SOLUTION -->
+<section id="solution" class="bg-stone">
+<div class="wrap">
+  <p class="eyebrow">The Solution</p>
+  <h2 class="section-title">Insulation covers — developed through years of research and field trials</h2>
+  <p class="section-lead">The Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF) developed a purpose-built insulation cover system through extensive experimental trials across Mongolia. The result: a simple, durable, low-cost cover that eliminates electrocution risk without affecting power supply reliability.</p>
 
-    <div class="project-cards">
-      <div class="pcard">
-        <div class="icon">⚡</div>
-        <h3>The Problem</h3>
-        <p>Concrete poles with steel crossarms and upright pin-insulators create a lethal gap between energized conductors. Birds perching on the pole top bridge this gap and are electrocuted.</p>
-      </div>
-      <div class="pcard">
-        <div class="icon">🛡️</div>
-        <h3>The Solution</h3>
-        <p>MBZ2 insulation covers — pole cap covers and crossarm top/bottom covers — physically insulate all non-conducting elements, eliminating contact risk at all three phases.</p>
-      </div>
-      <div class="pcard">
-        <div class="icon">🚂</div>
-        <h3>Our Partner</h3>
-        <p>Choir Railway supplies power to communities along the Govisumber–Shivee Ovoo corridor. UB Railway engineers install the covers under MBCC supervision.</p>
-      </div>
-      <div class="pcard">
-        <div class="icon">📦</div>
-        <h3>Supply Chain</h3>
-        <p>Covers are manufactured in China to MBZRCF specifications, using ASA plastic rated for 70+ year outdoor lifespan and temperatures from −50°C to +70°C.</p>
-      </div>
-      <div class="pcard">
-        <div class="icon">📏</div>
-        <h3>Scale</h3>
-        <p>The project covers two power lines: Line 1 (885 poles, fully mitigated) and Line 2 (285 poles, installation ongoing). A total of 1,170 poles across both lines.</p>
-      </div>
-      <div class="pcard">
-        <div class="icon">✅</div>
-        <h3>Progress</h3>
-        <p>Line 1 is 100% mitigated. Line 2 is 73% complete (209 of 285 poles). Remaining 76 poles are scheduled for the next installation phase.</p>
+  <div class="solution-steps">
+    <div class="sstep">
+      <div class="sstep-num">1</div>
+      <div class="sstep-body">
+        <h3>Pole cap cover</h3>
+        <p>A two-piece insulated cap fits over the pole top, covering all exposed galvanized steel mounts and the concrete top edge. This eliminates contact between a perched bird and the top-phase conductor.</p>
       </div>
     </div>
-
-    <!-- MAP -->
-    <h3 style="font-size:18px; font-weight:600; margin: 40px 0 16px;">Mitigated Lines — National MBZRCF Initiative</h3>
-    <div class="map-wrapper">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5000000!2d103!3d46.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smn!4v1700000000000!5m2!1sen!2smn"
-        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="Map of Mongolia showing powerline project areas">
-      </iframe>
-      <div class="map-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#1a4d2e"></div> Fully mitigated line</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#c97a1a"></div> Partially mitigated</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#2d7a4f"></div> Project area (Govisumber)</div>
-        <span style="margin-left:auto; font-size:12px;">Lines across 15 provinces, 7 electricity distribution companies</span>
+    <div class="sstep">
+      <div class="sstep-num">2</div>
+      <div class="sstep-body">
+        <h3>Crossarm top cover</h3>
+        <p>A two-piece cover over the top of the steel crossarm where birds perch directly beside the pin-insulators. Attaches with bolts — no existing hardware needs to be removed or adjusted.</p>
       </div>
     </div>
-    <p style="font-size:13px; color:var(--text-muted); margin-top:10px;">
-      ℹ️ The MBZRCF national initiative (2019–2022) covered 68 lines across 15 provinces. The MBCC Govisumber project is an ongoing continuation of this work.
-    </p>
-  </div>
-</section>
-
-<!-- MITIGATION -->
-<section id="mitigation" class="bg-green-light">
-  <div class="section-inner">
-    <p class="section-label">Mitigation</p>
-    <h2 class="section-title">How Bird-Safe Covers Work</h2>
-    <p class="section-lead">Electrocution occurs when a bird simultaneously contacts two energized conductors, or one conductor and a grounded surface. Insulation covers eliminate this risk by covering all dangerous non-conducting elements on the pole.</p>
-
-    <div class="mit-steps">
-      <div class="mit-step">
-        <div class="mit-step-num">1</div>
-        <div class="mit-step-body">
-          <h3>Pole cap cover (MBZ2)</h3>
-          <p>A two-piece insulated cap is fitted over the pole top, covering all exposed galvanized steel mounts and the concrete pole crown. This prevents birds from contacting the top-phase conductor while perching.</p>
-        </div>
-      </div>
-      <div class="mit-step">
-        <div class="mit-step-num">2</div>
-        <div class="mit-step-body">
-          <h3>Crossarm top cover</h3>
-          <p>A two-piece sheath clips over the top of the galvanized steel crossarm. Birds often perch on the crossarm directly below the pin-insulators — this cover eliminates that contact point.</p>
-        </div>
-      </div>
-      <div class="mit-step">
-        <div class="mit-step-num">3</div>
-        <div class="mit-step-body">
-          <h3>Crossarm bottom cover</h3>
-          <p>The underside of the crossarm is also covered. Phase II and III conductor wires run below the crossarm; larger birds (eagles, buzzards) can span this gap. The bottom cover closes this electrocution pathway.</p>
-        </div>
-      </div>
-      <div class="mit-step">
-        <div class="mit-step-num">4</div>
-        <div class="mit-step-body">
-          <h3>Anchor pole treatment</h3>
-          <p>Anchor poles receive a pole cap cover and jumper wire (ARK sheath) insulation on all conductor connections. Crossarm covers are not required on anchor poles by design.</p>
-        </div>
-      </div>
-      <div class="mit-step">
-        <div class="mit-step-num">5</div>
-        <div class="mit-step-body">
-          <h3>Full MBZ2 mitigation = bird-safe</h3>
-          <p>A pole is considered fully mitigated only when pole cap cover AND both crossarm covers are installed together. Partial installations — or brush deterrents alone — do not meet the MBZ2 standard.</p>
-        </div>
+    <div class="sstep">
+      <div class="sstep-num">3</div>
+      <div class="sstep-body">
+        <h3>Crossarm bottom cover</h3>
+        <p>A two-piece cover over the bottom of the steel crossarm where phase II and III conductor wires are connected. Larger birds such as eagles can bridge this gap — the bottom cover closes this electrocution pathway completely.</p>
       </div>
     </div>
-
-    <!-- Standard reference box -->
-    <div class="standard-box">
-      <h3>📋 Mongolian Bird-Safe Powerline Standard — MNS 6518:2015, Appendix D</h3>
-      <ul>
-        <li>Insulation materials must withstand temperatures from <strong>−50°C to +70°C</strong> and winds up to 40 m/s</li>
-        <li>Design lifespan: 25–35 years; covers must be rated for 6–15 kV lines</li>
-        <li>Pole top cover required on all line poles to prevent birds perching on exposed steel mounts</li>
-        <li>Phase II and III conductors must be positioned at least <strong>50 cm below</strong> the crossarm to prevent double-contact electrocution (D.1.2)</li>
-        <li>Crossarm covers required when crossarm-to-conductor spacing is less than <strong>1.5 metres</strong> (D.1.3)</li>
-        <li>All conductor connections at anchor poles must be insulated with covered cable (D.2.2)</li>
-        <li>Connections at substations and additional equipment must also be insulated (D.2.3)</li>
-      </ul>
-    </div>
-
-    <!-- Results -->
-    <h3 style="font-size:18px; font-weight:600; margin:40px 0 16px;">Effectiveness — MBZRCF Audit Results (August 2023)</h3>
-    <div class="results-grid">
-      <div class="rcard"><span class="rnum">94.2%</span><span class="rlbl">Reduction in electrocution rate at fully mitigated poles</span></div>
-      <div class="rcard"><span class="rnum">2/1000</span><span class="rlbl">Raptors electrocuted at MBZ2-mitigated poles</span></div>
-      <div class="rcard"><span class="rnum">35/1000</span><span class="rlbl">Raptors electrocuted at unmitigated poles</span></div>
-      <div class="rcard"><span class="rnum">&lt;1/5000</span><span class="rlbl">Cover failure rate after up to 4 years in field</span></div>
-    </div>
-
-    <p style="font-size:14px; font-weight:600; color:var(--text-muted); margin-bottom:8px;">Electrocution rate per 1,000 poles (June–August 2023)</p>
-    <div class="bar-chart">
-      <div class="bar-row">
-        <span class="bar-label">MBZ2 mitigated</span>
-        <div class="bar-track"><div class="bar-fill mitigated" style="width:5.7%">2</div></div>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Other / partial</span>
-        <div class="bar-track"><div class="bar-fill other" style="width:44.9%">35</div></div>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Anchor poles</span>
-        <div class="bar-track"><div class="bar-fill anchor" style="width:98.7%">77</div></div>
+    <div class="sstep">
+      <div class="sstep-num">4</div>
+      <div class="sstep-body">
+        <h3>Anchor pole treatment</h3>
+        <p>Anchor poles receive a pole cap cover plus jumper wire insulation (ARK sheath cover) on all conductor connections. All connections at substations and additional equipment are also insulated.</p>
       </div>
     </div>
   </div>
+
+  <div class="cover-specs">
+    <div class="spec-card"><div class="spec-label">Material</div><div class="spec-val">Acrylonitrile Styrene Acrylate (ASA)</div></div>
+    <div class="spec-card"><div class="spec-label">Lifespan</div><div class="spec-val">&gt;70 years outdoors</div></div>
+    <div class="spec-card"><div class="spec-label">Temperature range</div><div class="spec-val">−50°C to +70°C</div></div>
+    <div class="spec-card"><div class="spec-label">Wind resistance</div><div class="spec-val">Up to 40 m/s</div></div>
+    <div class="spec-card"><div class="spec-label">Voltage</div><div class="spec-val">6–15 kV lines</div></div>
+    <div class="spec-card"><div class="spec-label">Power supply</div><div class="spec-val">No impact on reliability once installed</div></div>
+  </div>
+
+  <div class="standard-banner">
+    <h3>📋 Mongolian National Standard — MNS 6518:2015, Appendix D</h3>
+    <ul>
+      <li>Pole top cover required on all line poles to eliminate perching contact with exposed steel</li>
+      <li>Phase II and III conductors must be at least 50 cm below the crossarm (D.1.2) if the pin insulator is suspended type</li>
+      <li>Crossarm covers are required, and crossarm-to-conductor spacing is not less than 1.5 metres (D.1.3)</li>
+      <li>All conductor connections at anchor poles must be insulated with covered cable (D.2.2)</li>
+      <li>Substation and additional equipment connections must also be insulated (D.2.3)</li>
+    </ul>
+  </div>
+</div>
 </section>
 
 <!-- RESEARCH -->
 <section id="research">
-  <div class="section-inner">
-    <p class="section-label">Research</p>
-    <h2 class="section-title">Science Behind the Work</h2>
-    <p class="section-lead">Our field surveys and data collection support both project implementation and broader scientific understanding of raptor electrocution in Mongolia.</p>
+<div class="wrap">
+  <p class="eyebrow">Research</p>
+  <h2 class="section-title">Field audit survey results — August 2023</h2>
+  <p class="section-lead">Four survey teams inspected 69 mitigated power lines across 15 provinces in August 2023, counting electrocuted bird carcasses under poles to measure mitigation effectiveness. The results are conclusive.</p>
 
-    <div class="research-cards">
-      <div class="resc-card">
-        <span class="tag">Background</span>
-        <h3>Scale of the Problem</h3>
-        <p>Abu Dhabi-funded research estimated that over 4,000 Saker Falcons were among approximately 18,000 raptors electrocuted annually in Mongolia before mitigation efforts began. Electrocution rates correlate with rodent prey abundance along powerlines.</p>
+  <div class="evidence-grid">
+    <div class="ecard green"><span class="en">2</span><span class="el">Electrocuted birds per 1,000 poles — fully mitigated with insulation covers</span></div>
+    <div class="ecard amber"><span class="en">35</span><span class="el">Electrocuted birds per 1,000 poles — unmitigated or partially mitigated</span></div>
+    <div class="ecard red"><span class="en">77</span><span class="el">Electrocuted birds per 1,000 poles — unmitigated anchor poles</span></div>
+  </div>
+
+  <div class="bar-section">
+    <h3>Electrocution rate per 1,000 poles (June–August 2023 survey period)</h3>
+    <div class="bar-row">
+      <span class="bar-label">Fully mitigated poles</span>
+      <div class="bar-track"><div class="bar-fill" style="width:2.6%;background:var(--moss)">2</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Partial / no mitigation</span>
+      <div class="bar-track"><div class="bar-fill" style="width:45%;background:#c97a1a">35</div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Unmitigated anchor poles</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--danger)">77</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div>
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;">Durability — covers in the field</h3>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">The first covers were installed in December 2018. By August 2023, after up to 4 years in Mongolia's harsh climate, the failure rate was zero.</p>
+      <ul style="font-size:14px;color:var(--muted);padding-left:18px;line-height:2;">
+        <li>Crossarm covers: fewer than <strong>1 failure per 5,000 poles</strong></li>
+        <li>Pole top covers: fewer than <strong>1 failure per 10,000 poles</strong></li>
+        <li>2019–2020 installations: <strong>zero failures recorded</strong></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;">Six criteria met</h3>
+      <ul style="font-size:14px;color:var(--muted);padding-left:18px;line-height:2.2;">
+        <li>✅ <strong>Effective</strong> — &gt;94% reduction in electrocution</li>
+        <li>✅ <strong>Durable</strong> — 70+ year lifespan, &lt;1/5,000 failure rate</li>
+        <li>✅ <strong>No impact on power supply reliability</strong></li>
+        <li>✅ <strong>Failsafe</strong> — any failure does not affect hardware</li>
+        <li>✅ <strong>Simple &amp; quick to install</strong></li>
+        <li>✅ <strong>Low cost</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PHOTO GALLERY -->
+  <div class="gallery-section">
+    <h3>Field Photos</h3>
+    <p>Photos from field surveys and installation works across Mongolia.</p>
+    <div class="gallery-grid">
+      <!-- PHOTO 1 — already have hero.png -->
+      <div class="gallery-item">
+        <img src="hero.png" alt="Mitigated pole with insulation cap cover, Govisumber" loading="lazy">
+        <div class="gallery-caption">Mitigated line pole with insulation cap cover — Govisumber Province</div>
       </div>
-      <div class="resc-card">
-        <span class="tag">Methods</span>
-        <h3>Audit Survey Methodology</h3>
-        <p>Five field teams inspected 69 power lines across 15 provinces in August 2023. Data collected: pole type, mitigation presence and type, cover condition, and carcass counts under each pole surveyed.</p>
+      <div class="gallery-item">
+        <img src="photo2.jpg" alt="Drone view of fully mitigated power line across Mongolian steppe" loading="lazy">
+        <div class="gallery-caption">Drone view — fully mitigated distribution line across the Mongolian steppe</div>
       </div>
-      <div class="resc-card">
-        <span class="tag">Materials</span>
-        <h3>ASA Insulation Covers</h3>
-        <p>Covers are manufactured from Acrylonitrile Styrene Acrylate (ASA) — the same material used in automotive exterior trim. Expected lifespan exceeds 70 years outdoors. No cover has broken or fallen off in up to 4 years of field deployment.</p>
+      <div class="gallery-item">
+        <img src="photo3.jpg" alt="Close-up of anchor pole with full insulation cover set installed" loading="lazy">
+        <div class="gallery-caption">Anchor pole fitted with full insulation cover set — dry steppe zone</div>
       </div>
-      <div class="resc-card">
-        <span class="tag">Ongoing</span>
-        <h3>Voltage & Risk Research</h3>
-        <p>MBCC is conducting research into the relationship between powerline voltage and electrocution risk, informing prioritization of future mitigation work across Mongolia's distribution network.</p>
-      </div>
-      <div class="resc-card">
-        <span class="tag">Wildlife</span>
-        <h3>Species at Risk</h3>
-        <p>Primary species affected include Saker Falcon (<em>Falco cherrug</em>), Steppe Eagle (<em>Aquila nipalensis</em>), and other large raptors. The steppe zone's high rodent density creates concentrated electrocution risk along distribution lines.</p>
-      </div>
-      <div class="resc-card">
-        <span class="tag">Monitoring</span>
-        <h3>Casualty Monitoring</h3>
-        <p>MBCC records wildlife casualties during all field inspections. Data on electrocuted birds — species, age, sex where determinable — feeds into national mortality databases and conservation assessments.</p>
+      <div class="gallery-item">
+        <img src="photo4.jpg" alt="Railway engineers installing insulation covers on a de-energized power pole" loading="lazy">
+        <div class="gallery-caption">UB Railway engineers installing insulation covers — Govisumber Province, 2024</div>
       </div>
     </div>
   </div>
+
+</div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="bg-stone">
-  <div class="section-inner">
-    <p class="section-label">Contact Us</p>
-    <h2 class="section-title">Get in Touch</h2>
+<!-- PROJECTS -->
+<section id="projects" class="bg-stone">
+<div class="wrap">
+  <p class="eyebrow">Projects</p>
+  <h2 class="section-title">Mitigation work across Mongolia</h2>
+  <p class="section-lead">The MBZRCF Initiative (2018–2022) mitigated 69 distribution lines across 15 provinces in partnership with seven regional electricity distribution companies. Work is ongoing — including new collaborations with Ulaanbaatar Railway.</p>
 
-    <div class="contact-grid">
-      <div class="contact-info">
-        <p>We welcome inquiries from researchers, energy companies, conservation organizations, and anyone interested in bird-safe infrastructure in Mongolia and beyond.</p>
-        <div class="contact-item">
-          <span class="contact-icon">📍</span>
-          <div><strong>Address</strong><span>Mongolian Bird Conservation Centre<br>Ulaanbaatar, Mongolia</span></div>
+  <div class="map-wrap" style="margin-bottom:12px;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4800000!2d100!3d46.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smn!4v1700000000000!5m2!1sen!2smn"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Map of Mongolia showing mitigated power lines">
+    </iframe>
+    <div class="map-footer">
+      <div class="leg"><div class="leg-dot" style="background:var(--moss)"></div> Fully mitigated line</div>
+      <div class="leg"><div class="leg-dot" style="background:#c97a1a"></div> Partially mitigated</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--danger)"></div> Unmitigated / high risk</div>
+      <div class="leg"><div class="leg-dot" style="background:#888"></div> Other distribution lines</div>
+      <span style="margin-left:auto;font-size:12px;">69 lines mitigated · 15 provinces · 7 electricity distribution companies</span>
+    </div>
+  </div>
+  <div class="map-coming-soon">
+    🗺️ <strong>Interactive map coming soon</strong> — a detailed line-by-line mitigation status map with KML data is currently being prepared and will be added here shortly.
+  </div>
+
+  <div class="projects-grid" style="margin-top:32px;">
+    <div class="proj-card">
+      <div class="proj-card-head">
+        <div class="tag">National Initiative · 2018–2022</div>
+        <h3>MBZRCF Initiative — National Mitigation Programme</h3>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-stat-row">
+          <div class="proj-stat"><span class="psn">69</span><span class="psl">Lines mitigated</span></div>
+          <div class="proj-stat"><span class="psn">26,527</span><span class="psl">Pole crossarms covered</span></div>
+          <div class="proj-stat"><span class="psn">15</span><span class="psl">Provinces</span></div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">🌐</span>
-          <div><strong>Organization</strong><span>Mongolian Bird Conservation Centre (MBCC)</span></div>
+        <p>Following a 5-year MoU signed with Mongolia's Ministry of Environment and Tourism in February 2019, MBZRCF funded and coordinated the retrofit of the most dangerous distribution lines across Mongolia's steppe zone. Implementation was carried out by the Mongolian Bird Conservation Centre (MBCC) and the Wildlife Science and Conservation Centre (WSCC).</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-head">
+        <div class="tag">Case Study · Ongoing — Govisumber Province</div>
+        <h3>Ulaanbaatar Railway Powerline in Choir — Public Utility Collaboration</h3>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-stat-row">
+          <div class="proj-stat"><span class="psn">2</span><span class="psl">Lines</span></div>
+          <div class="proj-stat"><span class="psn">1,105</span><span class="psl">Total poles</span></div>
+          <div class="proj-stat"><span class="psn">100%</span><span class="psl">Complete</span></div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">🤝</span>
-          <div><strong>Project Partner</strong><span>Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF)</span></div>
+        <p>A model example of a public railway company partnering with conservation organizations. Ulaanbaatar Railway in Choir collaborated with MBCC — with insulation covers donated by MBZRCF — to mitigate their powerlines in Govisumber Province. Line 1 (885 poles) is fully mitigated. Line 2 (285 poles) is 100% complete. This demonstrates how any energy utility can act with minimal cost and maximum impact.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:600;margin:36px 0 16px;">Coverage by electricity distribution company</h3>
+  <div style="overflow-x:auto;">
+  <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    <thead>
+      <tr style="background:var(--forest);color:#fff;">
+        <th style="padding:10px 14px;text-align:left;font-weight:600;">Company</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Lines</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Crossarms</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Pole tops</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Anchor poles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Western ESC / Bayan-Olgyi EDC</td><td style="padding:10px 14px;text-align:center;">17</td><td style="padding:10px 14px;text-align:center;">6,467</td><td style="padding:10px 14px;text-align:center;">6,472</td><td style="padding:10px 14px;text-align:center;">79</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Altay-Uliastay ESC</td><td style="padding:10px 14px;text-align:center;">14</td><td style="padding:10px 14px;text-align:center;">5,295</td><td style="padding:10px 14px;text-align:center;">5,250</td><td style="padding:10px 14px;text-align:center;">0</td></tr>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Bayankhongor EDC</td><td style="padding:10px 14px;text-align:center;">9</td><td style="padding:10px 14px;text-align:center;">3,177</td><td style="padding:10px 14px;text-align:center;">3,287</td><td style="padding:10px 14px;text-align:center;">227</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Southern Region EDC</td><td style="padding:10px 14px;text-align:center;">4</td><td style="padding:10px 14px;text-align:center;">2,455</td><td style="padding:10px 14px;text-align:center;">2,332</td><td style="padding:10px 14px;text-align:center;">196</td></tr>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Baganuur-Southeastern Region EDC</td><td style="padding:10px 14px;text-align:center;">13</td><td style="padding:10px 14px;text-align:center;">6,695</td><td style="padding:10px 14px;text-align:center;">6,511</td><td style="padding:10px 14px;text-align:center;">0</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Eastern ESC</td><td style="padding:10px 14px;text-align:center;">11</td><td style="padding:10px 14px;text-align:center;">2,438</td><td style="padding:10px 14px;text-align:center;">2,548</td><td style="padding:10px 14px;text-align:center;">61</td></tr>
+      <tr style="background:var(--forest);color:#fff;"><td style="padding:10px 14px;font-weight:600;">Total</td><td style="padding:10px 14px;text-align:center;font-weight:600;">68</td><td style="padding:10px 14px;text-align:center;font-weight:600;">26,527</td><td style="padding:10px 14px;text-align:center;font-weight:600;">26,400</td><td style="padding:10px 14px;text-align:center;font-weight:600;">563</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- TAKE ACTION -->
+<section id="action">
+<div class="wrap">
+  <p class="eyebrow">Take Action</p>
+  <h2 class="section-title">What energy companies and EDCs can do</h2>
+  <p class="section-lead">Mitigating your distribution lines is straightforward, low-cost, and compliant with Mongolia's national standard MNS 6518:2015. Here is how to start.</p>
+
+  <div class="action-grid">
+    <div class="action-steps">
+      <div class="astep">
+        <div class="astep-icon">🗺️</div>
+        <div class="astep-body">
+          <h3>Step 1 — Identify your high-risk lines</h3>
+          <p>Distribution power lines of 6kV, 10kV and 15kV with standard concrete poles and steel crossarms are high risk. MBCC can assist with field surveys to assess and prioritize your lines.</p>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">🏗️</span>
-          <div><strong>Installation Partner</strong><span>Choir Railway / UB Railway</span></div>
+      </div>
+      <div class="astep">
+        <div class="astep-icon">📋</div>
+        <div class="astep-body">
+          <h3>Step 2 — Conduct a pole survey</h3>
+          <p>A trained team surveys each pole — recording type, pin configuration, and condition. This determines the exact cover quantities needed before procurement.</p>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-icon">📦</div>
+        <div class="astep-body">
+          <h3>Step 3 — Procure insulation covers</h3>
+          <p>Covers are available through MBCC / MBZRCF or can be independently procured. They meet MNS 6518:2015 requirements. Contact MBCC for supplier information and specifications.</p>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-icon">🔧</div>
+        <div class="astep-body">
+          <h3>Step 4 — Install with your engineers</h3>
+          <p>Installation requires a <strong>power shutdown for worker safety</strong>. Your existing line engineers can install covers directly once the line is de-energized. MBCC provides training and supervision support.</p>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-icon">✅</div>
+        <div class="astep-body">
+          <h3>Step 5 — Monitor and report</h3>
+          <p>Annual monitoring of carcasses under poles verifies effectiveness and satisfies MNS 6518:2015 compliance. MBCC can assist with monitoring protocols.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="contact-box">
+        <h3>🦅 Mongolian Bird Conservation Centre (MBCC)</h3>
+        <div class="citem">
+          <div class="clabel">Role</div>
+          <p>Implementation, field surveys, training, monitoring support</p>
+        </div>
+        <div class="citem">
+          <div class="clabel">Address</div>
+          <p>Office 302, GB Center, Baga toiruu 36/2<br>8th khoroo, Sukhbaatar District<br>Ulaanbaatar 14192, Mongolia</p>
+        </div>
+        <div class="citem">
+          <div class="clabel">Phone</div>
+          <a href="tel:+97677757576">7775 7576</a>
+        </div>
+        <div class="citem">
+          <div class="clabel">Email</div>
+          <a href="mailto:info@mbcc.mn">info@mbcc.mn</a>
         </div>
       </div>
 
-      <form class="contact-form" onsubmit="handleForm(event)">
-        <input type="text" placeholder="Your name" required>
-        <input type="email" placeholder="Email address" required>
-        <input type="text" placeholder="Organization (optional)">
-        <textarea rows="5" placeholder="Your message or inquiry…" required></textarea>
-        <button type="submit">Send Message</button>
-        <p id="form-msg" style="font-size:14px;color:var(--green-mid);display:none">✅ Thank you! We will be in touch soon.</p>
-      </form>
+      <div class="contact-box">
+        <h3>🌍 Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF)</h3>
+        <div class="citem">
+          <div class="clabel">Role</div>
+          <p>Cover development, equipment donation, and international funding</p>
+        </div>
+        <div class="citem">
+          <div class="clabel">Website</div>
+          <a href="https://www.mbzrcf.org" target="_blank">www.mbzrcf.org</a>
+        </div>
+      </div>
     </div>
   </div>
+
+  <h3 style="font-size:15px;font-weight:600;margin:40px 0 14px;color:var(--muted);">Organizations involved in mitigation work in Mongolia</h3>
+  <div class="org-row">
+    <span class="org-pill key">MBZRCF — Cover developer &amp; funder</span>
+    <span class="org-pill key">MBCC — Implementation</span>
+    <span class="org-pill key">WSCC — Implementation</span>
+    <span class="org-pill">Ministry of Environment &amp; Tourism</span>
+    <span class="org-pill">Ministry of Energy</span>
+    <span class="org-pill">Western ESC</span>
+    <span class="org-pill">Altay-Uliastay ESC</span>
+    <span class="org-pill">Bayankhongor EDC</span>
+    <span class="org-pill">Southern Region EDC</span>
+    <span class="org-pill">Baganuur-SE EDC</span>
+    <span class="org-pill">Eastern ESC</span>
+    <span class="org-pill">Choir Railway</span>
+    <span class="org-pill">UB Railway</span>
+  </div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Mongolian Bird Conservation Centre (MBCC) · Powerline Bird Safety Project</p>
-  <p style="margin-top:6px;">In partnership with <a href="https://www.mbzrcf.org" target="_blank">Mohamed Bin Zayed Raptor Conservation Fund</a></p>
-  <p style="margin-top:6px; font-size:12px; color:rgba(255,255,255,0.45);">Mitigation standard: MNS 6518:2015 Appendix D · Cover material: ASA (Acrylonitrile Styrene Acrylate) · Lifespan: 70+ years</p>
+  <div class="footer-logos">
+    <span>Mongolian Bird Conservation Centre (MBCC)</span>
+    <span>·</span>
+    <span>Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF)</span>
+    <span>·</span>
+    <span>Ministry of Environment and Tourism, Mongolia</span>
+  </div>
+  <p>This site is maintained to promote bird-safe power infrastructure across Mongolia.</p>
+  <p style="margin-top:6px;">Mitigation standard: MNS 6518:2015 Appendix D</p>
+  <p style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.3);">© 2026 MBCC · Bird-Safe Power Lines Mongolia</p>
 </footer>
 
 <script>
-function handleForm(e) {
-  e.preventDefault();
-  document.getElementById('form-msg').style.display = 'block';
-  e.target.reset();
-}
-// Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
     document.querySelector('.nav-links').classList.remove('open');
   });
 });
