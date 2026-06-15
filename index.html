@@ -52,9 +52,9 @@ nav {
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('hero.png');
-  background-size: cover; background-position: center 40%;
-  filter: brightness(0.42); z-index: 0;
+  
+  
+  background: linear-gradient(135deg, #0f1f12 0%, #1b4332 60%, #2d6a4f 100%)!important; z-index: 0;
 }
 .hero > * { position: relative; z-index: 1; }
 .hero-kicker {
@@ -201,13 +201,13 @@ footer a { color: var(--sage); text-decoration: none; }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#home">🦅 Bird-Safe Power Lines <span>Mongolia</span></a>
+  <a class="nav-logo" href="#home"><img src="mbcc-logo.png" alt="MBCC Logo" style="height:36px;width:auto;opacity:0.9;filter:brightness(0) invert(1);"> Bird-Safe Power Lines <span>Mongolia</span></a>
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#solution">The Solution</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#solution">Solution</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#action">Take Action</a></li>
@@ -217,7 +217,7 @@ footer a { color: var(--sage); text-decoration: none; }
 <!-- HERO -->
 <section id="home">
 <div class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" style="background:linear-gradient(135deg,#0f1f12 0%,#1b4332 60%,#2d6a4f 100%)!important;position:absolute;inset:0;z-index:0;"></div>
   <div class="hero-kicker">Mongolia · Bird Electrocution Mitigation</div>
   <h1>Mongolia's distribution power lines, 10kV and 15kV, were killing <em>18,000 raptors</em> every year — before mitigation was implemented</h1>
   <p class="hero-sub">A proven, low-cost solution exists. This website explains the problem, the solution, and what electricity distribution companies and consumers can do right now.</p>
@@ -425,11 +425,11 @@ footer a { color: var(--sage); text-decoration: none; }
       </div>
       <div class="gallery-item">
         <img src="photo3.jpg" alt="Close-up of anchor pole with full insulation cover set installed" loading="lazy">
-        <div class="gallery-caption">Line pole fitted with full insulation cover set — dry steppe zone</div>
+        <div class="gallery-caption">Anchor pole fitted with full insulation cover set — dry steppe zone</div>
       </div>
       <div class="gallery-item">
-        <img src="photo4.jpg" alt="Railway engineers installing insulation covers on line pole" loading="lazy">
-        <div class="gallery-caption">UB Railway engineers installing insulation covers — Govisumber Province, 2026</div>
+        <img src="photo4.jpg" alt="Railway engineers installing insulation covers on a de-energized power pole" loading="lazy">
+        <div class="gallery-caption">UB Railway engineers installing insulation covers — Govisumber Province, 2024</div>
       </div>
     </div>
   </div>
@@ -474,7 +474,7 @@ footer a { color: var(--sage); text-decoration: none; }
           <div class="proj-stat"><span class="psn">26,527</span><span class="psl">Pole crossarms covered</span></div>
           <div class="proj-stat"><span class="psn">15</span><span class="psl">Provinces</span></div>
         </div>
-        <p>Following a 5-year MoU signed with Mongolia's Ministry of Environment and Tourism in February 2019, MBZRCF funded and coordinated the retrofit of the most dangerous distribution lines across Mongolia's steppe zone. Implementation was carried out by the Mongolian Bird Conservation Centre (MBCC) and the Wildlife Science and Conservation Centre (WSCC).</p>
+        <p>Following a 5-year MoU signed with Mongolia's Ministry of Environment and Climate Change in February 2019, MBZRCF funded and coordinated the retrofit of the most dangerous distribution lines across Mongolia's steppe zone. Implementation was carried out by the Mongolian Bird Conservation Center and the Wildlife Science and Conservation Centre (WSCC).</p>
       </div>
     </div>
     <div class="proj-card">
@@ -567,7 +567,7 @@ footer a { color: var(--sage); text-decoration: none; }
 
     <div style="display:flex;flex-direction:column;gap:20px;">
       <div class="contact-box">
-        <h3>🦅 Mongolian Bird Conservation Centre (MBCC)</h3>
+        <h3>🦅 Mongolian Bird Conservation Center</h3>
         <div class="citem">
           <div class="clabel">Role</div>
           <p>Implementation, field surveys, training, monitoring support</p>
@@ -605,7 +605,7 @@ footer a { color: var(--sage); text-decoration: none; }
     <span class="org-pill key">MBZRCF — Cover developer &amp; funder</span>
     <span class="org-pill key">MBCC — Implementation</span>
     <span class="org-pill key">WSCC — Implementation</span>
-    <span class="org-pill">Ministry of Environment &amp; Tourism</span>
+    <span class="org-pill">Ministry of Environment Ministry of Environment &amp; Tourismamp; Climate Change</span>
     <span class="org-pill">Ministry of Energy</span>
     <span class="org-pill">Western ESC</span>
     <span class="org-pill">Altay-Uliastay ESC</span>
@@ -622,11 +622,11 @@ footer a { color: var(--sage); text-decoration: none; }
 <!-- FOOTER -->
 <footer>
   <div class="footer-logos">
-    <span>Mongolian Bird Conservation Centre (MBCC)</span>
+    <span>Mongolian Bird Conservation Center</span>
     <span>·</span>
     <span>Mohamed Bin Zayed Raptor Conservation Fund (MBZRCF)</span>
     <span>·</span>
-    <span>Ministry of Environment and Tourism, Mongolia</span>
+    <span>Ministry of Environment and Climate Change, Mongolia</span>
   </div>
   <p>This site is maintained to promote bird-safe power infrastructure across Mongolia.</p>
   <p style="margin-top:6px;">Mitigation standard: MNS 6518:2015 Appendix D</p>
