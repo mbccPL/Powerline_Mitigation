@@ -45,10 +45,12 @@ nav {
   padding: 90px 2rem 80px; text-align: center;
   overflow: hidden; min-height: 520px;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
+  background: linear-gradient(135deg, #0f1f12 0%, #1b4332 60%, #2d6a4f 100%);
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, #0f1f12 0%, #1b4332 60%, #2d6a4f 100%)!important; z-index: 0;
+  background: linear-gradient(135deg, #0f1f12 0%, #1b4332 60%, #2d6a4f 100%);
+  z-index: 0;
 }
 .hero > * { position: relative; z-index: 1; }
 .hero-kicker {
@@ -359,10 +361,10 @@ footer a { color: var(--sage); text-decoration: none; }
     }).addTo(map);
 
     var statusStyle = {
-      mitigated:   { color: '#2d6a4f', weight: 5, opacity: 0.9 },
-      unmitigated: { color: '#c1121f', weight: 5, opacity: 0.9 },
-      wooden:      { color: '#3e2723', weight: 5, opacity: 0.9 },
-      alt:         { color: '#f77f00', weight: 5, opacity: 0.9 }
+      mitigated:   { color: '#2d6a4f', weight: 3, opacity: 0.9 },
+      unmitigated: { color: '#c1121f', weight: 3, opacity: 0.9 },
+      wooden:      { color: '#3e2723', weight: 3, opacity: 0.9 },
+      alt:         { color: '#f77f00', weight: 3, opacity: 0.9 }
     };
     var statusLabel = {
       mitigated: 'Mitigated',
@@ -383,7 +385,7 @@ footer a { color: var(--sage); text-decoration: none; }
             var s = feature.properties.status;
             counts[s] = (counts[s] || 0) + 1;
             lyr.bindPopup('<strong>' + feature.properties.name + '</strong><br>' + (statusLabel[s] || s));
-            lyr.on('mouseover', function() { this.setStyle({ weight: 8 }); });
+            lyr.on('mouseover', function() { this.setStyle({ weight: 5 }); });
             lyr.on('mouseout', function() { this.setStyle({ weight: statusStyle[s].weight }); });
           }
         }).addTo(map);
