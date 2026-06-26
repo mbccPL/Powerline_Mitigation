@@ -52,13 +52,20 @@ nav {
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-color: #0f1f12; background-image: url('./hero-bg.jpg');
+  background-color: #0f1f12;
+  background-image: url('https://mbccpl.github.io/Powerline_Mitigation/hero-bg.jpg');
   background-size: cover;
   background-position: center center;
-  filter: brightness(0.45);
   z-index: 0;
 }
-.hero > * { position: relative; z-index: 1; }
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+.hero > * { position: relative; z-index: 2; }
+
 .hero-kicker { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); color: var(--sage); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; }
 .hero h1 { font-family: 'Source Serif 4', serif; font-size: clamp(24px, 4vw, 46px); font-weight: 700; line-height: 1.18; max-width: 860px; margin: 0 auto 20px; text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
 .hero h1 em { color: var(--sage); font-style: normal; }
@@ -192,7 +199,7 @@ footer a { color: var(--sage); text-decoration: none; }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#home">🦅 Bird-Safe Power Lines <span>Mongolia</span></a>
+  <a class="nav-logo" href="#home">Bird-Safe Power Lines <span>Mongolia</span></a>
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -213,7 +220,7 @@ footer a { color: var(--sage); text-decoration: none; }
   <h1>Mongolia's distribution power lines, 10kV and 15kV, were killing up to <em>18,000 raptors</em> every year — before mitigation was implemented</h1>
   <p class="hero-sub">A proven, low-cost solution exists. This website explains the problem, the solution, and what electricity distribution companies and private sector users can do right now.</p>
   <div class="hero-stats">
-    <div class="hstat"><span class="n">Up to 18,000</span><span class="l">Raptors electrocuted annually in Mongolia — before mitigation</span></div>
+    <div class="hstat"><span class="n">18,000</span><span class="l">Raptors electrocuted annually in Mongolia — before mitigation</span></div>
     <div class="hstat"><span class="n">4,000+</span><span class="l">Saker Falcons killed per year — before mitigation</span></div>
     <div class="hstat"><span class="n">~95%</span><span class="l">Reduction in electrocution — result of mitigation project</span></div>
     <div class="hstat"><span class="n">69</span><span class="l">State-owned lines already mitigated nationwide across 15 provinces</span></div>
@@ -252,7 +259,7 @@ footer a { color: var(--sage); text-decoration: none; }
       </div>
       <div class="problem-card">
         <h3>International impact</h3>
-        <p>The problem extends beyond Mongolia's borders. High mortality of Mongolian Saker Falcons has also been recorded in their main wintering areas in Qinghai, China — research funded by Abu Dhabi identified electrocution as a key driver of population decline.</p>
+        <p>The problem extends beyond Mongolia's borders. High mortality of Mongolian Saker Falcons has also been recorded in their main wintering areas in Qinghai, China — research funded by Abu Dhabi, UAE.</p>
       </div>
     </div>
   </div>
@@ -277,7 +284,7 @@ footer a { color: var(--sage); text-decoration: none; }
 
   <div class="solution-steps">
     <div class="sstep"><div class="sstep-num">1</div><div class="sstep-body"><h3>Pole cap cover</h3><p>A two-piece insulated cap fits over the pole top, covering all exposed galvanized steel mounts and the concrete top edge. This eliminates contact between a perched bird and the top-phase conductor.</p></div></div>
-    <div class="sstep"><div class="sstep-num">2</div><div class="sstep-body"><h3>Crossarm cover</h3><p>A two-piece sheath cover fits over both the top and bottom of the steel crossarm. Birds perching beside the pin-insulators on top are fully insulated, while the bottom cover eliminates the risk of larger birds such as eagles bridging the gap to the phase II and III conductor wires below. Attaches with bolts — no existing hardware needs to be removed or adjusted.</p></div></div>
+    <div class="sstep"><div class="sstep-num">2</div><div class="sstep-body"><h3>Crossarm cover</h3><p>A two-piece sheath cover fits over both the top and bottom of the steel crossarm. Birds perching beside the pin-insulators on top are fully insulated. Attaches with bolts — no existing hardware needs to be removed or adjusted.</p></div></div>
     <div class="sstep"><div class="sstep-num">3</div><div class="sstep-body"><h3>Anchor pole treatment</h3><p>Anchor poles receive a pole cap cover plus jumper wire insulation (ARK sheath cover) on all conductor connections. All connections at substations and additional equipment are also insulated.</p></div></div>
   </div>
 
@@ -355,8 +362,8 @@ footer a { color: var(--sage); text-decoration: none; }
         <div class="gallery-caption">An unmitigated concrete distribution pole — every metal surface is a potential electrocution point</div>
       </div>
       <div class="gallery-item">
-        <img src="hero.png" alt="Mitigated pole with insulation cap cover — Govisumber Province" loading="lazy">
-        <div class="gallery-caption">Mitigated line pole with insulation cap cover — Govisumber Province</div>
+        <img src="hero.png" alt="Mitigated pole with insulation cap cover" loading="lazy">
+        <div class="gallery-caption">Mitigated line pole with insulation cap cover</div>
       </div>
       <div class="gallery-item">
         <img src="photo3.jpg" alt="Full insulation cover set installed" loading="lazy">
@@ -444,7 +451,7 @@ footer a { color: var(--sage); text-decoration: none; }
         }).addTo(map);
         map.fitBounds(layer.getBounds(), { padding: [20, 20] });
         document.getElementById('map-line-count').textContent =
-          counts.mitigated + ' mitigated · ' + counts.unmitigated + ' unmitigated · ' +
+          '69 mitigated · ' + counts.unmitigated + ' unmitigated · ' +
           counts.wooden + ' wooden pole · ' + counts.alt + ' other mitigation';
       })
       .catch(function() {
@@ -462,7 +469,7 @@ footer a { color: var(--sage); text-decoration: none; }
           <div class="proj-stat"><span class="psn">26,527</span><span class="psl">Poles mitigated with insulation cover</span></div>
           <div class="proj-stat"><span class="psn">15</span><span class="psl">Provinces</span></div>
         </div>
-        <p>Following a 5-year MoU signed with Mongolia's Ministry of Environment and Climate Change in February 2019, MBZRCF funded and coordinated the retrofit of the most dangerous distribution lines across Mongolia's steppe zone. Implementation was carried out by the Mongolian Bird Conservation Center and the Wildlife Science and Conservation Centre (WSCC).</p>
+        <p>Following a 5-year MoU signed with Mongolia's Ministry of Environment and Climate Change in February 2019, MBZRCF funded and coordinated the retrofit of the most dangerous distribution lines across Mongolia's steppe zone. Implementation was carried out by the Mongolian Bird Conservation Center and the Wildlife Science and Conservation Centre.</p>
       </div>
     </div>
     <div class="proj-card">
@@ -563,7 +570,7 @@ footer a { color: var(--sage); text-decoration: none; }
 
 <!-- FOOTER -->
 <footer>
-  <p>Mongolian Bird Conservation Center &nbsp;·&nbsp; Mohamed Bin Zayed Raptor Conservation Fund &nbsp;·&nbsp; Ministry of Environment and Climate Change, Mongolia</p>
+  <p>Mongolian Bird Conservation Center &nbsp;·&nbsp; Mohamed Bin Zayed Raptor Conservation Fund</p>
   <p style="margin-top:6px;">This site is maintained to promote bird-safe power infrastructure across Mongolia.</p>
   <p style="margin-top:6px;">Mitigation standard: <a href="MNS_Appendix_D.pdf" target="_blank">MNS 6518:2015 Appendix D ↓</a></p>
   <p style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.3);">© 2026 MBCC · Bird-Safe Power Lines Mongolia</p>
