@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шувуудад ээлтэй өндөр хүчдэлийн шугам — Монгол</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #0f1f12;
+  --forest: #1b4332;
+  --moss: #2d6a4f;
+  --sage: #52b788;
+  --mist: #d8f3dc;
+  --amber: #e76f00;
+  --amber-light: #fff3e0;
+  --danger: #c1121f;
+  --stone: #f5f4f0;
+  --ink: #1a1a1a;
+  --muted: #5a5a5a;
+  --border: #ddd9d0;
+  --white: #ffffff;
+  --radius: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--white); line-height: 1.7; font-size: 16px; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--night);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 58px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.nav-logo { color: var(--sage); font-weight: 700; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo span { color: rgba(255,255,255,0.5); font-weight: 400; font-size: 13px; }
+.nav-links { display: flex; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; padding: 0 13px; height: 58px; display: flex; align-items: center; font-size: 13.5px; font-weight: 500; transition: color 0.15s; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: #fff; border-bottom-color: var(--sage); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 20px; height: 2px; background: #fff; margin: 4px 0; }
+
+/* HERO — photo background */
+.hero {
+  position: relative; color: #fff;
+  padding: 90px 2rem 80px; text-align: center;
+  overflow: hidden; min-height: 520px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  z-index: 0;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+.hero > * { position: relative; z-index: 2; }
+
+.hero-kicker { display: inline-block; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,200,80,0.45); color: #ffd166; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+.hero h1 { font-family: 'Source Serif 4', serif; font-size: clamp(24px, 4vw, 46px); font-weight: 700; line-height: 1.18; max-width: 860px; margin: 0 auto 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,0.5); }
+.hero h1 em { color: #ffd166; font-style: normal; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.hero-sub { font-size: 17px; color: rgba(255,255,255,0.96); max-width: 640px; margin: 0 auto 48px; text-shadow: 0 1px 10px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.4); font-weight: 400; }
+.hero-stats { display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.28); padding-top: 40px; max-width: 900px; width: 100%; margin: 0 auto; }
+.hstat { flex: 1; min-width: 140px; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.22); text-align: center; }
+.hstat:last-child { border-right: none; }
+.hstat .n { font-family: 'Source Serif 4', serif; font-size: 38px; font-weight: 800; color: #ff8c00; display: block; line-height: 1; margin-bottom: 6px; text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4); letter-spacing: -0.5px; }
+.hstat .l { font-size: 12px; color: rgba(255,255,255,0.92); line-height: 1.5; text-shadow: 0 1px 6px rgba(0,0,0,0.6); font-weight: 500; letter-spacing: 0.3px; }
+
+/* SECTIONS */
+section { scroll-margin-top: 58px; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 72px 2rem; }
+.wrap-full { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--moss); margin-bottom: 10px; }
+.section-title { font-family: 'Source Serif 4', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+.section-lead { font-size: 17px; color: var(--muted); margin-bottom: 40px; line-height: 1.8; }
+.section-lead-full { font-size: 17px; color: var(--muted); margin-bottom: 40px; line-height: 1.8; max-width: 100%; }
+.bg-stone { background: var(--stone); }
+
+/* PROBLEM */
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+.problem-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.problem-card.danger { border-left: 3px solid var(--danger); }
+.problem-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.problem-card p { font-size: 14px; color: var(--muted); }
+.stat-highlight { background: var(--danger); color: #fff; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+.stat-highlight .big { font-family: 'Source Serif 4', serif; font-size: 48px; font-weight: 700; line-height: 1; display: block; }
+.stat-highlight p { font-size: 15px; color: rgba(255,255,255,0.88); margin-top: 4px; }
+.species-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.species-tag { background: var(--mist); color: var(--forest); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 20px; border: 1px solid #b7e4c7; text-decoration: none; transition: background 0.15s; }
+.species-tag:hover { background: #b7e4c7; }
+
+/* SOLUTION */
+.solution-steps { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 32px; }
+.sstep { display: grid; grid-template-columns: 52px 1fr; border-bottom: 1px solid var(--border); background: var(--white); }
+.sstep:last-child { border-bottom: none; }
+.sstep-num { background: var(--forest); color: #fff; font-family: 'Source Serif 4', serif; font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.sstep-body { padding: 18px 20px; }
+.sstep-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--forest); }
+.sstep-body p { font-size: 14px; color: var(--muted); }
+.cover-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-top: 28px; }
+.spec-card { background: var(--stone); border-radius: var(--radius); padding: 18px; }
+.spec-card .spec-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 4px; }
+.spec-card .spec-val { font-size: 15px; font-weight: 600; }
+.standard-banner { background: var(--amber-light); border: 1px solid #ffd08a; border-left: 4px solid var(--amber); border-radius: var(--radius); padding: 20px 24px; margin-top: 28px; }
+.standard-banner h3 { font-size: 14px; font-weight: 600; color: var(--amber); margin-bottom: 8px; }
+.standard-banner ul { padding-left: 18px; font-size: 14px; color: #5a3e00; line-height: 2; }
+.cost-banner { background: var(--mist); border: 1px solid #b7e4c7; border-left: 4px solid var(--moss); border-radius: var(--radius); padding: 18px 24px; margin-top: 24px; font-size: 15px; color: var(--forest); line-height: 1.7; }
+
+/* GALLERY */
+.gallery-section { margin-top: 48px; }
+.gallery-section h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.gallery-section p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.gallery-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--stone); }
+.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.gallery-caption { padding: 10px 14px; font-size: 13px; color: var(--muted); }
+
+/* RESEARCH */
+.evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+.ecard { border-radius: var(--radius); padding: 20px; text-align: center; }
+.ecard.green { background: var(--forest); color: #fff; }
+.ecard.amber { background: #c97a1a; color: #fff; }
+.ecard.red { background: var(--danger); color: #fff; }
+.ecard .en { font-family: 'Source Serif 4', serif; font-size: 34px; font-weight: 700; display: block; margin-bottom: 4px; }
+.ecard .el { font-size: 12px; opacity: 0.85; line-height: 1.4; }
+.bar-section h3 { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 13px; width: 160px; color: var(--muted); flex-shrink: 0; }
+.bar-track { flex: 1; background: #ece9e2; border-radius: 4px; height: 24px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+
+/* MAP */
+.map-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.map-footer { display: flex; gap: 20px; flex-wrap: wrap; padding: 14px 20px; background: var(--white); border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); align-items: center; }
+.leg { display: flex; align-items: center; gap: 7px; }
+.leg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.proj-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--white); }
+.proj-card-head { padding: 20px; border-bottom: 1px solid var(--border); }
+.proj-card-head .tag { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 6px; }
+.proj-card-head h3 { font-size: 16px; font-weight: 600; }
+.proj-card-body { padding: 20px; }
+.proj-stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.proj-stat { background: var(--stone); border-radius: 6px; padding: 8px 14px; text-align: center; }
+.proj-stat .psn { font-size: 18px; font-weight: 700; color: var(--forest); display: block; line-height: 1; }
+.proj-stat .psl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.proj-card-body p { font-size: 14px; color: var(--muted); }
+.org-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.org-pill { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; display: inline-block; }
+.org-pill:hover { background: var(--mist); border-color: #b7e4c7; color: var(--forest); }
+.org-pill.key { background: var(--mist); border-color: #b7e4c7; color: var(--forest); }
+
+/* TAKE ACTION */
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.action-steps { display: flex; flex-direction: column; gap: 16px; }
+.astep { display: flex; gap: 16px; align-items: flex-start; }
+.astep-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.astep-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.astep-body p { font-size: 14px; color: var(--muted); }
+.contact-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.contact-logo { height: 36px; width: auto; margin-bottom: 12px; display: block; }
+.contact-box h3 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--forest); border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.citem { margin-bottom: 14px; }
+.citem .clabel { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--moss); margin-bottom: 2px; }
+.citem p { font-size: 14px; color: var(--muted); }
+.citem a { color: var(--moss); text-decoration: none; font-size: 14px; }
+.citem a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer { background: var(--night); color: rgba(255,255,255,0.55); text-align: center; padding: 32px 2rem; font-size: 13px; line-height: 2; }
+footer a { color: var(--sage); text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .hamburger { display: block; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--night); padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links a { height: 44px; padding: 0 20px; }
+  .problem-grid, .evidence-grid, .projects-grid, .action-grid { grid-template-columns: 1fr; }
+  .hstat { min-width: 120px; padding: 12px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home"><img src="mbzrcf-logo.png" alt="МБЗМШХС" style="height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.85;vertical-align:middle;"></a>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Цэс">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#problem">Асуудал</a></li>
+    <li><a href="#solution">Шийдэл</a></li>
+    <li><a href="#research">Судалгаа</a></li>
+    <li><a href="#projects">Төсөл</a></li>
+    <li><a href="#action">Хэрхэн хамгаалах</a></li>
+  </ul>
+  <a href="index.html" style="color:rgba(255,255,255,0.7);font-size:12px;font-weight:500;text-decoration:none;margin-right:8px;letter-spacing:1px;">EN</a>
+  <img src="mbcc-logo.png" alt="МШХТ" style="height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.85;vertical-align:middle;margin-left:16px;">
+</nav>
+
+<!-- HERO -->
+<section id="home">
+<div class="hero">
+  <div class="hero-kicker">Шувуудад ээлтэй өндөр хүчдэлийн түгээх шугам</div>
+  <h1>Өндөр хүчдэлийн түгээх шугам дах монгол орны <em>махчин шувуу хамгаалал</em></h1>
+  <p class="hero-sub">Үр дүнтэй, зардал хэмнэсэн шийдэл. Энэхүү вэбсайт шувуу хамгаалалд тулгамдсан асуудал болон шийдэлийг танилцуулахаас гадна цахилгаан түгээх компаниуд болон хувийн хэвшил, шувуу судлаачидын хамтын ажиллагааны ололт, үр дүнг харуулна.</p>
+  <div class="hero-stats">
+    <div class="hstat"><span class="n">18,000</span><span class="l">Хамгааллын төсөл хэрэгжихээс өмнө — Монгол оронд жил бүр цахилгаан түгээх шугамд хүчдэлд цохиулан эндэж буй махчин шувуудын тоо, толгой</span></div>
+    <div class="hstat"><span class="n">4,000+</span><span class="l">Хамгааллын төсөл хэрэгжихээс өмнө — Жил тутам эндэж буй идлэг шонхорын тоо, толгой</span></div>
+    <div class="hstat"><span class="n">~95%</span><span class="l">Хамгааллын төслийн үр дүн — Махчин шувуудын үхэл хорогдлын бууралт</span></div>
+    <div class="hstat"><span class="n">69</span><span class="l">Монгол орны 15 аймгийн сум сууринг холбосон улсын өндөр хүчдэлийн түгээх шугам аюулгүй болсон.</span></div>
+  </div>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+<div class="wrap">
+  <p class="eyebrow">Асуудал</p>
+  <h2 class="section-title">Төмөр бетон тулгуурт өндөр хүчдэлийн шонгийн загвар нь махчин шувуудыг үхэлд хүргэж буй гол аюул занал юм.</h2>
+
+  <p class="section-lead-full">Өндөр хүчдэлийн 10–15 кВ-ын түгээх шугамын тулгуурууд нь цайрдсан ган хөндлөвч болон босоо шаазан хундага бүхий төмөр бетон шонгоос бүрдэнэ. Шонгийн газардуулагчтай төмөр дээр сууж цахилгаан гүйдэлтэй утсанд хүрсэн шувууд хүчдэлд цохиулдаг.</p>
+
+  <div class="problem-grid">
+    <div>
+      <div class="stat-highlight">
+        <span class="big">18,000</span>
+        <p>Аюулыг бууруулахаас өмнө Монголд жилд 18,000 махчин шувуу хүчдэлд цохиулж эндэж байсан — үүнд дэлхий нийтэд устаж буй зүйл болох 4,000 гаруй идлэг шонхор багтана.</p>
+      </div>
+      <div class="problem-card danger">
+        <h3>Монгол орны тал хээр бол хээрийн махчин шувуудын гол тархац нутаг юм.</h3>
+        <p>Монгол орны хээрийн бүсэд жижиг мэрэгчдийн нягтшил өндөр байх нь махчин шувуудыг олноор татаж, цахилгааны шугамд хүчдэлд цохиулан эндэх эрсдэл хамгийн өндөр болгож байдаг.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="problem-card">
+        <h3>Газардуулагчтай төмөр бетон тулгуур шон шувуудад маш аюултай.</h3>
+        <p>Цахилгаан гүйдэлтэй утас хооронд суусан шувуу тэр даруй хүчдэлд цохиулна.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Үхэл хорогдол хамгийн их шувууд</h3>
+        <p>Идлэг шонхор, Хээрийн бүргэд, Цармын бүргэд зэрэг нэн ховор зүйлүүд хамгийн их хохирч байна.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Олон улсын нөлөөлөл</h3>
+        <p>Энэ асуудал нь зөвхөн Монгол улсын хилээр хязгаарлагдахгүй. Хятадын Чинхай муж дахь идлэг шонхрын өвөлждөг гол бүс нутгуудад ч үхэл хорогдол их бүртгэгдсэн байна.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:600;margin:36px 0 12px;">Үхэл хорогдол хамгийн их шувууд</h3>
+  <div class="species-row">
+    <a class="species-tag" href="https://doi.org/10.3356/0892-1016-54.2.136" target="_blank">🦅 Идлэг шонхор <em>(Falco cherrug)</em></a>
+    <a class="species-tag" href="https://doi.org/10.3356/jrr2476" target="_blank">🦅 Хээрийн бүргэд <em>(Aquila nipalensis)</em></a>
+    <a class="species-tag" href="https://doi.org/10.3356/jrr2476" target="_blank">🦅 Цармын бүргэд <em>(Aquila chrysaetos)</em></a>
+  </div>
+</div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="bg-stone">
+<div class="wrap">
+  <p class="eyebrow">Шийдэл</p>
+  <h2 class="section-title">Тусгаарлагч бүрээсийг олон жилийн судалгаа, туршилтын ажлын үр дүнд хийж бүтээсэн.</h2>
+
+  <p class="section-lead-full">Мохамед Бин Зайедын Махчин шувуу хамгаалах сан Монголд урт хугацаанд хийсэн хээрийн судалгаа, туршилтын ажлын үр дүнд тусгаарлагч бүрээсний загварыг гаргаж авсан. Бүрээсийг цахилгаан гүйдэл дамжуулах утсанд биш харин тулгуур шонгийн орой болон хөндлөвчид суурилуулдаг. Энэ бүрээс нь эвдэрч унасан ч цахилгаан хангамжид ямар нэг эрсдэл үүсгэхгүй. Гүйдэл дамжуулах утсанд хүрэхгүй, тоос, мөс хурааж цуглахгүй учир цахилгааны нэвчилт, салхины гэмтэл зэрэг кабелийн тусгаарлалттай холбоотой асуудлуудад нөлөө үзүүлэхээс сэргийлнэ. Тусгаарлалтын хундагнууд бүрэн нээлттэй хэвээр байдаг тул газраас хяналт шалгалт хийх боломжтой. Суурилуулалт нь энгийн хялбар бөгөөд хурдан байдаг нь цахилгаан эх үүсвэр таслаж суурилуулалт хийх хугацааг багасгах давуу тал болдог.</p>
+
+  <div class="solution-steps">
+    <div class="sstep"><div class="sstep-num">1</div><div class="sstep-body"><h3>1-р алхам — Шонгийн оройн тусгаарлагч бүрээс</h3><p>Төмөр бетон шонгийн орой болон бүх металл тоног, бүтцийг бүрдэг. Хоёр хэсэгт загвар нь одоо байгаа тулгуурын тоног төхөөрөмжийг авахгүйгээр суурилуулдаг давуу талтай.</p></div></div>
+    <div class="sstep"><div class="sstep-num">2</div><div class="sstep-body"><h3>2-р алхам — Хөндлөвчний тусгаарлагч бүрээс</h3><p>Ган хөндлөвчний дээд болон доод хэсгийг бүрсэнээр 2, 3-р фазыг хамгаалдаг. Тулгуурын ган хөндлөвч дээр шууд боолтоор бэхлэн, бүрдэг.</p></div></div>
+    <div class="sstep"><div class="sstep-num">3</div><div class="sstep-body"><h3>3-р алхам — Анкер шонгийн холбогч утасны бүрээс</h3><p>Завсрын тулгуур ялгаатай тоноглол бүхий анкер шонгуудад тусгайлан бүтээсэн.</p></div></div>
+  </div>
+
+  <div class="standard-banner">
+    <h3>📋 Монгол Улсын Стандарт &nbsp;<a href="MNS_Appendix_D.pdf" target="_blank" style="font-size:12px;color:var(--amber);font-weight:500;">↓ Стандартыг татаж авах (PDF)</a></h3>
+    <ul>
+      <li>Эдгээр бүрээс нь Цахилгаан дамжуулах шугамыг шувуудад ээлтэй болгох Монгол Улсын стандартын техникийн шаардлагыг хангасан.</li>
+    </ul>
+  </div>
+
+  <div class="cover-specs">
+    <div class="spec-card"><div class="spec-label">Материал</div><div class="spec-val">Акрилонитрил Стирол Акрилат (ASA) — нарны хэт ягаан туяа болон хатуу ширүүн цаг агаарт тэсвэртэй</div></div>
+    <div class="spec-card"><div class="spec-label">Ашиглалтын хугацаа</div><div class="spec-val">Гадаах орчинд 70 гаруй жил ашиглах боломжтой</div></div>
+    <div class="spec-card"><div class="spec-label">Хүчдэл</div><div class="spec-val">10–15 кВ-ын түгээх шугам</div></div>
+    <div class="spec-card"><div class="spec-label">Суурилуулалт</div><div class="spec-val">Тусгай багаж хэрэгсэл эсвэл тог дамжуулж буй шугамтай шууд харьцах шаардлагагүй.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+<div class="wrap">
+  <p class="eyebrow">Судалгаа</p>
+  <h2 class="section-title">Аюулыг Бууруулах Арга Хэмжээний Үр Дүн</h2>
+  <p class="section-lead">Шувуу судлаачдаас бүрдсэн дөрвөн судалгааны баг 2023 оны 8-р сард 15 аймгийн хамгааллын бүрээс суурьлуулсан 69 цахилгааны түгээх шугамын дагуу хамгааллын арга хэмжээний үр дүнг шалгаж хүчдэлд цохиулж эндсэн шувуудыг бүртгэж тоолов. Үр дүн нь маш сайн байв.</p>
+
+  <div class="evidence-grid">
+    <div class="ecard green"><span class="en">2</span><span class="el">Тусгаарлагч бүрээстэй аюулгүй шугамд — 1,000 шон тутамд хүчдэлд цохиулж эндсэн шувуу</span></div>
+    <div class="ecard amber"><span class="en">35</span><span class="el">Хэсэгчилэн аюулгүй болгосон, мөн тусгаарлагчгүй шонгууд — 1,000 шон тутамд хүчдэлд цохиулж эндсэн шувуу</span></div>
+    <div class="ecard red"><span class="en">77</span><span class="el">Хамгаалалтгүй анкер шонгууд — 1,000 анкер шон тутамд хүчдэлд цохиулж эндсэн шувуу</span></div>
+  </div>
+
+  <div class="bar-section">
+    <h3>1,000 шон бүрд хүчдэлд цохиулж үхсэн шувуудын тоо (2023 оны 8-р сарын судалгааны хугацаанд)</h3>
+    <div class="bar-row"><span class="bar-label">Бүрэн аюулгүй болгосон шонгууд</span><div class="bar-track"><div class="bar-fill" style="width:2.6%;background:var(--moss)">2</div></div></div>
+    <div class="bar-row"><span class="bar-label">Хэсэгчилэн аюулгүй болгосон болон тусгаарлагчгүй шонгууд</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:#c97a1a">35</div></div></div>
+    <div class="bar-row"><span class="bar-label">Хамгаалалтгүй анкер шонгууд</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--danger)">77</div></div></div>
+  </div>
+
+  <div style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div>
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;">Тулгуур шонд суурилуулсан бүрээсний насжилт</h3>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">Эхний бүрээсийг 2019 оны 12-р сард суурилуулсан. 2026 оны 2-р сар гэхэд Монголын хатуу ширүүн уур амьсгалд 6 жил өнгөрсний дараа эвдрэлийн хувь тэг байв.</p>
+    </div>
+    <div>
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;">Зургаан шалгуур</h3>
+      <ul style="font-size:14px;color:var(--muted);padding-left:18px;line-height:2.2;">
+        <li>✅ <strong>Үр дүнтэй</strong> — шувуу хүчдэлд цохиулах хорогдол 95%-иас дээш буурсан</li>
+        <li>✅ <strong>Бат бэх байдал</strong> — 70 гаруй жилийн насжилт</li>
+        <li>✅ <strong>Саад учруулахгүй байдал</strong> — цахилгаан хангамж, засвар үйлчилгээнд нөлөөлөхгүй</li>
+        <li>✅ <strong>Аюулгүй байдал</strong> — найдвартай загвар, цахилгааны аюулгүй байдалд хохирол учруулахгүй</li>
+        <li>✅ <strong>Энгийн бөгөөд хялбар</strong> — тусгай сургалт шаардлагагүй</li>
+        <li>✅ <strong>Зардал бага</strong> — шон тутамд ойролцоогоор 50 ам.долларын өртөгтэй</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FIELD PHOTOS -->
+  <div class="gallery-section">
+    <h3>Зураг</h3>
+    <p>Монгол даяар хийсэн хээрийн судалгаа болон суурилуулалтын ажлын зургууд.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="photo_problem_pole.jpg" alt="Тусгаарлагч бүрээсгүй төмөр бетон шон" loading="lazy">
+        <div class="gallery-caption">Тусгаарлагч бүрээсгүй төмөр бетон шон — метал гадаргуу бүрд хүчдэлд цохиулах аюултай</div>
+      </div>
+      <div class="gallery-item">
+        <img src="hero.png" alt="Тусгаарлагч бүрээстэй аюулгүй болгосон шугамын шон" loading="lazy">
+        <div class="gallery-caption">Тусгаарлагч бүрээстэй аюулгүй болгосон шугамын шон</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo3.jpg" alt="Бүрэн тусгаарлагч бүрээс" loading="lazy">
+        <div class="gallery-caption">Бүрэн тусгаарлагч бүрээс: шонгийн оройн болон хөндлөвчний бүрээс — хуурай хээрийн бүс нутагт</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo2.jpg" alt="Дрон зураг" loading="lazy">
+        <div class="gallery-caption">Монгол орны тал хээрийн тусгаарлагч бүрээстэй шугамын дрон зураг</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo_birds_mitigated.jpg" alt="Сохор элээ аюулгүй шон дээр" loading="lazy">
+        <div class="gallery-caption">Тусгаарлагч бүрээстэй, аюулгүй шон дээрх Сохор элээ</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo4.jpg" alt="УБ төмөр замын баг бүрээс суурилуулж буй нь" loading="lazy">
+        <div class="gallery-caption">УБ төмөр замын цахилгаан, эрчим хүчний баг тусгаарлагч бүрээс суурилуулж буй нь — Говьсүмбэр аймаг, 2026</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo_eagle_dead.jpg" alt="Цармын бүргэд хүчдэлд цохиулж эндсэн" loading="lazy">
+        <div class="gallery-caption">⚠️ Аюултай шонгийн доор цахилгаанд цохиулж эндсэн Цармын бүргэд</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo5.jpg" alt="Идлэг шонхорын сэг зэм" loading="lazy">
+        <div class="gallery-caption">⚠️ Тусгаарлагч бүрээсгүй аюултай шонд хүчдэлд цохиулж эндсэн Идлэг шонхорын сэг зэм</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photo_vehicle_carcass.jpg" alt="МШХТ-ийн машинд ачсан шарил" loading="lazy">
+        <div class="gallery-caption">⚠️ Судалгааны үеэр МШХТ-ийн машинд ачиж цуглуулсан Идлэг шонхорын сэг зэм</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="bg-stone">
+<div class="wrap">
+  <p class="eyebrow">Төсөл</p>
+  <h2 class="section-title">Монгол орны хэмжээнд хэрэгжүүлсэн хамгааллын ажил</h2>
+  <p class="section-lead">МБЗМШХС-ийн санаачилгын хүрээнд (2019–2022) нь долоон бүсийн цахилгаан түгээх компанитай хамтран 15 аймгийн 69 түгээх шугамыг аюулгүй болгосон. Уланбаатар Төмөр замтай хамтын ажиллагаа болон бусад шугамыг аюулгүй болгох ажил үргэлжилж байна.</p>
+
+  <div class="map-wrap" style="margin-bottom:12px;">
+    <div id="leaflet-map" style="width:100%;height:520px;background:#e8e6e0;"></div>
+    <div class="map-footer">
+      <div class="leg"><div class="leg-dot" style="background:#2d6a4f"></div> Тусгаарлагч бүхий аюулгүй болгосон шугам</div>
+      <div class="leg"><div class="leg-dot" style="background:#c1121f"></div> Тусгаарлагчгүй аюултай шугам</div>
+      <div class="leg"><div class="leg-dot" style="background:#3e2723"></div> Модон шонтой шугам</div>
+      <div class="leg"><div class="leg-dot" style="background:#f77f00"></div> Бусад арга хэргэслээр аюулгүй болгосон шугам</div>
+      <span id="map-line-count" style="margin-left:auto;font-size:12px;">Газрын зураг уншиж байна...</span>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px;">Нэр болон төлөвийг харахын тулд газрын зурган дээрх аль ч шугам дээр дарна уу. Аймгаар судлахын тулд томруулж хуурцаглана уу.</p>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (function() {
+    var map = L.map('leaflet-map', { scrollWheelZoom: false }).setView([46.8, 103.5], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors', maxZoom: 14
+    }).addTo(map);
+    var statusStyle = {
+      mitigated:   { color: '#2d6a4f', weight: 3, opacity: 0.9 },
+      unmitigated: { color: '#c1121f', weight: 3, opacity: 0.9 },
+      wooden:      { color: '#3e2723', weight: 3, opacity: 0.9 },
+      alt:         { color: '#f77f00', weight: 3, opacity: 0.9 }
+    };
+    var statusLabel = {
+      mitigated:   'Тусгаарлагч бүхий аюулгүй болгосон',
+      unmitigated: 'Тусгаарлагчгүй аюултай',
+      wooden:      'Модон шонтой шугам',
+      alt:         'Бусад арга хэргэслээр аюулгүй болгосон шугам'
+    };
+    fetch('lines.geojson')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var counts = { mitigated: 0, unmitigated: 0, wooden: 0, alt: 0 };
+        var layer = L.geoJSON(data, {
+          style: function(f) { return statusStyle[f.properties.status] || { color: '#888', weight: 3 }; },
+          onEachFeature: function(f, lyr) {
+            var s = f.properties.status;
+            counts[s] = (counts[s] || 0) + 1;
+            lyr.bindPopup('<strong>' + f.properties.name + '</strong><br>' + (statusLabel[s] || s));
+            lyr.on('mouseover', function() { this.setStyle({ weight: 5 }); });
+            lyr.on('mouseout', function() { this.setStyle({ weight: statusStyle[s].weight }); });
+          }
+        }).addTo(map);
+        map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+        document.getElementById('map-line-count').textContent =
+          counts.mitigated + ' аюулгүй болгосон · ' + counts.unmitigated + ' аюулгүй болгоогүй · ' +
+          counts.wooden + ' модон шон · ' + counts.alt + ' бусад';
+      })
+      .catch(function() {
+        document.getElementById('map-line-count').textContent = 'Газрын зургийн өгөгдөл ачааллаж чадсангүй.';
+      });
+  })();
+  </script>
+
+  <div class="projects-grid" style="margin-top:32px;">
+    <div class="proj-card">
+      <div class="proj-card-head"><div class="tag">Үндэсний хэмжээний санаачилга · 2019–2022</div><h3>МБЗМШХС-ийн санаачилга — Монгол оронд хэрэгжүүлсэн махчин шувуу хамгааллын хөтөлбөр</h3></div>
+      <div class="proj-card-body">
+        <div class="proj-stat-row">
+          <div class="proj-stat"><span class="psn">69</span><span class="psl">Аюулгүй болгосон шугам</span></div>
+          <div class="proj-stat"><span class="psn">26,527</span><span class="psl">Тусгаарлагч бүрээсээр аюулгүй болгосон шон</span></div>
+          <div class="proj-stat"><span class="psn">15</span><span class="psl">Аймаг</span></div>
+        </div>
+        <p>7 бүсийн цахилгаан түгээх компанитай хамтран 15 аймгийн 69 өндөр эрсдэлтэй түгээх шугамыг аюулгүй болгосон.</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-head"><div class="tag">· Хэрэгжиж дууссан · Жишиг судалгаа — Говьсүмбэр аймаг</div><h3>Чойр, Говьсүмбэр аймаг дахь Улаанбаатар Төмөр замын өндөр хүчдэлийн түгээх 10кВ шугам — Шувуу хамгааллын хамтын ажиллагаа</h3></div>
+      <div class="proj-card-body">
+        <div class="proj-stat-row">
+          <div class="proj-stat"><span class="psn">2</span><span class="psl">Шугам</span></div>
+          <div class="proj-stat"><span class="psn">1,170</span><span class="psl">Нийт шон</span></div>
+          <div class="proj-stat"><span class="psn">100%</span><span class="psl">Дууссан</span></div>
+        </div>
+        <p>УБ Төмөр зам шувуу хамгаалалын байгууллагуудтай хамтран ажиллаж буй жишиг загвар. Чойр дах Улаанбаатар Төмөр зам нь МБЗМШХС болон МШХТ-тэй хамтран Говьсүмбэр аймаг дахь цахилгааны шугамаа аюулгүй болгосон. 1-р шугам (885 шон) бүрэн аюулгүй болсон. 2-р шугам (285 шон) 100% дууссан. Өндөр хүчдэл түгээх болон хэрэглэгч байгууллага бага зардлаар үр дүнтэй ажиллаж болохыг харуулж буй жишээ юм.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:600;margin:36px 0 16px;">Цахилгаан Түгээх Компаниуд</h3>
+  <div style="overflow-x:auto;">
+  <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    <thead>
+      <tr style="background:var(--forest);color:#fff;">
+        <th style="padding:10px 14px;text-align:left;font-weight:600;">Компани</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Аюулгүй болгосон шугам</th>
+        <th style="padding:10px 14px;text-align:center;font-weight:600;">Аймаг</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Баруун бүсийн эрчим хүчний систем (ББЭХС)</td><td style="padding:10px 14px;text-align:center;">17</td><td style="padding:10px 14px;text-align:center;">Баян-Өлгий болон бусад</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Алтай-Улиастайн эрчим хүчний систем (АУЭХС)</td><td style="padding:10px 14px;text-align:center;">14</td><td style="padding:10px 14px;text-align:center;">Говь-Алтай болон бусад</td></tr>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Баянхонгор цахилгаан түгээх сүлжээ (БЦТС)</td><td style="padding:10px 14px;text-align:center;">9</td><td style="padding:10px 14px;text-align:center;">Баянхонгор</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Өмнөд бүсийн цахилгаан түгээх сүлжээ (ӨБЦТС)</td><td style="padding:10px 14px;text-align:center;">4</td><td style="padding:10px 14px;text-align:center;">Өмнөговь болон бусад</td></tr>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Багануур-Зүүн өмнөд бүсийн цахилгаан түгээх сүлжээ (БЗӨБЦТС)</td><td style="padding:10px 14px;text-align:center;">13</td><td style="padding:10px 14px;text-align:center;">Дундговь болон бусад</td></tr>
+      <tr style="background:var(--stone);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Дорнод бүсийн эрчим хүчний систем (ЗБЭХС)</td><td style="padding:10px 14px;text-align:center;">11</td><td style="padding:10px 14px;text-align:center;">Дорнод болон бусад</td></tr>
+      <tr style="background:var(--white);border-bottom:1px solid var(--border);"><td style="padding:10px 14px;">Баян-Өлгий цахилгаан шугам сүлжээ (БӨЦШС)</td><td style="padding:10px 14px;text-align:center;">—</td><td style="padding:10px 14px;text-align:center;">Баян-Өлгий</td></tr>
+      <tr style="background:var(--forest);color:#fff;"><td style="padding:10px 14px;font-weight:600;">Нийт</td><td style="padding:10px 14px;text-align:center;font-weight:600;">69</td><td style="padding:10px 14px;text-align:center;font-weight:600;">15 аймаг</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- TAKE ACTION -->
+<section id="action">
+<div class="wrap">
+  <p class="eyebrow">Хэрхэн хамгаалах</p>
+  <h2 class="section-title">Цахилгаан түгээх компаниуд болон хувийн хэвшил юу хийх боломжтой вэ?</h2>
+  <p class="section-lead">Монгол Улсын MNS 6518:2015 стандартын шаардлага дагуу өндөр хүчдэлийн түгээх шугамаа аюулгүй болгох энгийн, зардал хэмнэсэн, үр дүнтэй шийдэл. Хэрхэн эхлэх вэ.</p>
+
+  <div class="action-grid">
+    <div class="action-steps">
+      <div class="astep"><div class="astep-icon">🗺️</div><div class="astep-body"><h3>1-р алхам — Эрсдэлтэй шугамаа тодорхойлох</h3><p>Стандарт бетон шон болон ган хөндлөвчтэй 6кВ, 10кВ, 15кВ-ын түгээх цахилгааны шугамууд өндөр эрсдэлтэй. МШХТ / МБЗМШХС таны шугамыг үнэлж, эрэмбэлэхэд хээрийн судалгааны тусламж үзүүлэх боломжтой.</p></div></div>
+      <div class="astep"><div class="astep-icon">📋</div><div class="astep-body"><h3>2-р алхам — Шонгийн судалгаа хийх</h3><p>Сургагдсан баг бүр шонг судлан — төрөл, хундагны тохиргоо, нөхцөлийг бүртгэнэ. Энэ нь худалдан авалтаас өмнө шаардлагатай бүрээсний яг тоо хэмжээг тогтооно.</p></div></div>
+      <div class="astep"><div class="astep-icon">📦</div><div class="astep-body"><h3>3-р алхам — Тусгаарлагч бүрээс худалдан авах</h3><p>Бүрээсийг МШХТ / МБЗМШХС-ээр дамжуулан худалдан авч болно. Тэдгээр нь MNS 6518:2015 шаардлагыг хангана. МБЗМШХС нь аюулыг бууруулах ажлын хамтарсан санхүүжилтийн сонголтуудад туслалцаа үзүүлэх боломжтой. Нийлүүлэгчийн мэдээлэл болон техникийн үзүүлэлтийн талаар МШХТ-тэй холбогтоо.</p></div></div>
+      <div class="astep"><div class="astep-icon">🔧</div><div class="astep-body"><h3>4-р алхам — Инженерүүдээрээ суурилуулах</h3><p>Суурилуулалт нь <strong>ажилчдын аюулгүй байдлын үүднээс цахилгаан тасалдал шаарддаг</strong>. Шугамын цахилгаан тасарсны дараа таны одоо байгаа шугамын инженерүүд бүрээсийг шууд суурилуулж чадна. МШХТ нь сургалт болон хяналтын дэмжлэг үзүүлнэ.</p></div></div>
+      <div class="astep"><div class="astep-icon">✅</div><div class="astep-body"><h3>5-р алхам — Хяналт тавьж тайлагнах</h3><p>Шонгийн доорх шарилын жилийн хяналт нь үр нөлөөг баталгаажуулж, MNS 6518:2015 дагаврын шаардлагыг хангана. МШХТ нь хяналтын журмын туслалцаа үзүүлж чадна.</p></div></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="contact-box">
+        <img src="mbzrcf-logo.png" alt="МБЗМШХС лого" class="contact-logo" style="filter:invert(0);">
+        <h3>Мохамед Бин Зайедын Махчин шувуу хамгаалах сан (МБЗМШХС)</h3>
+        <div class="citem"><div class="clabel">Үүрэг</div><p>Хөтөлбөрийн удирдлага, тусгаарлагч бүрээсний загвар, тоног төхөөрөмж үйлдвэрлэл, олон улсын санхүүжилт, судалгааны зохицуулалт, стратегийн дэмжлэг</p></div>
+        <div class="citem"><div class="clabel">Вэбсайт</div><a href="https://www.mbzraptorfund.org/" target="_blank">www.mbzraptorfund.org</a></div>
+        <div class="citem"><div class="clabel">И-мэйл</div><a href="mailto:info@mbzraptorfund.org">info@mbzraptorfund.org</a></div>
+      </div>
+      <div class="contact-box">
+        <img src="mbcc-logo.png" alt="МШХТ лого" class="contact-logo">
+        <h3>Монголын шувуу хамгаалах төв (МШХТ)</h3>
+        <div class="citem"><div class="clabel">Үүрэг</div><p>Хээрийн судалгаа, өгөгдлийн менежмент, орон нутгийн харилцаа, оролцогч талуудтай харилцах болон Монгол дахь төслийн хэрэгжилт</p></div>
+        <div class="citem"><div class="clabel">Хаяг</div><p>302 тоот, ГБ Төв, Бага тойруу 36/2<br>Сүхбаатар дүүрэг, 8-р хороо<br>Улаанбаатар 14192, Монгол Улс</p></div>
+        <div class="citem"><div class="clabel">Утас</div><a href="tel:+97677757576">+976 7775 7576</a></div>
+        <div class="citem"><div class="clabel">И-мэйл</div><a href="mailto:info@mbcc.mn">info@mbcc.mn</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cost-banner" style="margin-top:32px;">
+    Өндөр хүчдэлийн түгээх 10, 15 кВ-ын шугамын нэг тулгуурын шон тутамд ойролцоогоор <strong>50 ам.долларын</strong> өртөгтэй энэхүү тусгаарлагч бүрээс нь шувууд хүчдэлд цохиулж үхэж, хорогдох эрсдэлийг хамгийн үр дүнтэй бууруулж байгаа шийдлүүдийн нэг юм. Суурилуулах ажлыг цахилгаан түгээх компанийн инженер, ажилчид гүйцэтгэнэ. Дэлгэрэнгүй мэдээллийн авахыг хүсвэл МШХТ / МБЗМШХС-тэй холбоо барина уу.
+  </div>
+
+  <h3 style="font-size:15px;font-weight:600;margin:40px 0 14px;color:var(--muted);">Монгол дахь аюулыг бууруулах ажилд оролцсон байгууллагууд</h3>
+  <div class="org-row">
+    <a class="org-pill key" href="https://www.mbzraptorfund.org/" target="_blank">МБЗМШХС</a>
+    <a class="org-pill key" href="http://www.mbcc.mn" target="_blank">МШХТ</a>
+    <a class="org-pill" href="https://www.zasag.mn" target="_blank">Байгаль орчин, уур амьсгалын өөрчлөлтийн яам</a>
+    <a class="org-pill" href="https://energy.gov.mn" target="_blank">Эрчим хүчний яам</a>
+    <span class="org-pill">ББЭХС</span>
+    <span class="org-pill">АУЭХС</span>
+    <span class="org-pill">БЦТС</span>
+    <span class="org-pill">ӨБЦТС</span>
+    <span class="org-pill">БЗӨБЦТС</span>
+    <span class="org-pill">ЗБЭХС</span>
+    <span class="org-pill">УБ Төмөр зам</span>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Монголын шувуу хамгаалах төв &nbsp;·&nbsp; Мохамед Бин Зайедын Махчин шувуу хамгаалах сан</p>
+  <p style="margin-top:6px;">Энэхүү вэбсайт нь Монгол оронд шувуудад аюулгүй өндөр хүчдэлийн дэд бүтцийг дэмжих зорилготой.</p>
+  <p style="margin-top:6px;">Аюулыг бууруулах стандарт: <a href="MNS_Appendix_D.pdf" target="_blank">MNS 6518:2015 Хавсралт D ↓</a></p>
+  <p style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.3);">© 2026 МШХТ · Шувуудад аюулгүй өндөр хүчдэлийн түгээх шугам</p>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
